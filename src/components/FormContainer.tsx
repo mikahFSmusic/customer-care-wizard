@@ -1,12 +1,11 @@
 import React from "react";
-import "./DamageDefectForm/DamageDefectForm";
-import DamageDefectForm from "./DamageDefectForm/DamageDefectForm";
+import DamageDefectFormV2 from "./DamageDefectForm/DamageDefectFormV2";
 
 const FormContainer = () => {
   return (
-    <div style={{ height: "100%", width: "100%", display: "flex" }}>
-      <DamageDefectForm />
-      <div style={{ height: "100%", width: "70%" }}>Form guide</div>
+    <div style={{ width: "100%", display: "flex", overflow: "scroll", margin:30, justifyContent:"center"}}>
+      <DamageDefectFormV2 />
+      {/* <div style={{ height: "100%", width: "70%" }}>Form guide</div> */}
     </div>
   );
 };

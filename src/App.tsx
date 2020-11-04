@@ -12,19 +12,21 @@ function App() {
     padding: 0,
     display: 'flex',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    backgroundColor:'#fdf8e8',
   }
 
   const appContainerStyle = {
     left: '5rem',
     top: '50px',
+    height: '100%',
     bottom: 0,
     right: 0,
-    backgroundColor:'#fdf8e8',
     padding: 5,
     display:'flex',
     justifyContent: 'center',
-    alignContent: 'center'
+    alignContent: 'center',
+    backgroundColor:'#fdf8e8',
   }
 
   return (

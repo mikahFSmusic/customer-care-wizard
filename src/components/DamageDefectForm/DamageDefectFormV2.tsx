@@ -1,194 +1,199 @@
-import React, { ChangeEvent } from "react";
-import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import LevelOneHead from "./LevelOne";
-import LevelTwoHead from "./LevelTwo";
-import LevelThreeHead from "./LevelThree";
-import OfferDiscount from "./FormComponents/OfferDiscount";
-import RefundAmount from "./FormComponents/RefundAmount";
-import ItemAmount from "./FormComponents/ItemAmount";
-import DamageDescription from "./FormComponents/FileCase/DamageDescription";
-import ActionNeeded from "./FormComponents/FileCase/ActionNeeded";
-import ReplacementOrder from "./FormComponents/ReplacementOrder";
-import NarvarReturn from "./FormComponents/NarvarReturn";
-import SubmitConfirmation from "./SubmitConfirmation";
-
-interface FormInputs {
-  purchaseReceived: string;
-  orderNumber: string;
-  vendor: string;
-  skuNumber: string;
-  damageLevel: string;
-}
+import React, { ChangeEvent } from "react"
+import { Form, Button } from "react-bootstrap"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import LevelOneHead from "./LevelOne"
+import LevelTwoHead from "./LevelTwo"
+import LevelThreeHead from "./LevelThree"
+import OfferDiscount from "./FormComponents/OfferDiscount"
+import RefundAmount from "./FormComponents/RefundAmount"
+import ItemAmount from "./FormComponents/ItemAmount"
+import DamageDescription from "./FormComponents/FileCase/DamageDescription"
+import ActionNeeded from "./FormComponents/FileCase/ActionNeeded"
+import ReplacementOrder from "./FormComponents/ReplacementOrder"
+import NarvarReturn from "./FormComponents/NarvarReturn"
+import SubmitConfirmation from "./SubmitConfirmation"
+import { addDamagedDefect } from './../../API'
 
 const DDForm = (props: any) => {
-  let level: string = "";
-  const [levelHeadElement, setLevelHeadElement] = useState<JSX.Element>();
+  let level: string = ""
+  const [levelHeadElement, setLevelHeadElement] = useState<JSX.Element>()
   const [imageUploadElements, setImageUploadElements] = useState<
     Array<JSX.Element>
-  >([]);
+  >([])
   const [offerDiscountElement, setOfferDiscountElement] = useState<
     JSX.Element
-  >();
-  const [refundAmountElement, setRefundAmountElement] = useState<JSX.Element>();
-  const [narvarReturnElement, setNarvarReturnElement] = useState<JSX.Element>();
-  const [itemAmountElement, setItemAmountElement] = useState<JSX.Element>();
+  >()
+  const [refundAmountElement, setRefundAmountElement] = useState<JSX.Element>()
+  const [narvarReturnElement, setNarvarReturnElement] = useState<JSX.Element>()
+  const [itemAmountElement, setItemAmountElement] = useState<JSX.Element>()
   const [fileCaseElements, setFileCaseElements] = useState<Array<JSX.Element>>(
     []
-  );
+  )
   const [replacementOrderElement, setReplacementOrderElement] = useState<
     JSX.Element
-  >();
+  >()
 
   // Submission Confirmation Modal
-  const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
-  const { register, handleSubmit, errors } = useForm<FormInputs>();
+  const [show, setShow] = useState(false)
+  const [data, setData] = useState({})
+  const { register, handleSubmit, errors } = useForm()
 
   const setLevel = (newLevel: string) => {
-    level = newLevel;
-  };
+    level = newLevel
+  }
 
   // Resets components on level change
   const clearDynamicComponents = () => {
-    setOfferDiscountElement(<div></div>);
-    setRefundAmountElement(<div></div>);
-    setNarvarReturnElement(<div></div>);
-    setItemAmountElement(<div></div>);
-    setFileCaseElements([<div></div>]);
-    setReplacementOrderElement(<div></div>);
-    setShowLevelOnePreview(false);
-    setShowAllPreviews(false);
-  };
+    setOfferDiscountElement(<div></div>)
+    setRefundAmountElement(<div></div>)
+    setNarvarReturnElement(<div></div>)
+    setItemAmountElement(<div></div>)
+    setFileCaseElements([<div></div>])
+    setReplacementOrderElement(<div></div>)
+    setShowLevelOnePreview(false)
+    setShowAllPreviews(false)
+  }
 
-  const [imageOneURL, setImageOneURL] = useState<string>();
-  const [imageTwoURL, setImageTwoURL] = useState<string>();
-  const [imageThreeURL, setImageThreeURL] = useState<string>();
-  const [showLevelOnePreview, setShowLevelOnePreview] = useState(false);
-  const [showAllPreviews, setShowAllPreviews] = useState(false);
+  const [imageOneURL, setImageOneURL] = useState<string>()
+  const [imageTwoURL, setImageTwoURL] = useState<string>()
+  const [imageThreeURL, setImageThreeURL] = useState<string>()
+  const [showLevelOnePreview, setShowLevelOnePreview] = useState(false)
+  const [showAllPreviews, setShowAllPreviews] = useState(false)
+
+  // sets image urls on image upload
   const handleImageUpload = (event: ChangeEvent<any>) => {
-    const el = event.target as HTMLFormElement;
-    const name = el.getAttribute("name");
-    const url = URL.createObjectURL(el.files[0]);
-    if (name === "image1") {
-      setImageOneURL(url);
-    } else if (name === "image2") {
-      setImageTwoURL(url);
-    } else if (name === "image3") {
-      setImageThreeURL(url);
+    const el = event.target as HTMLFormElement
+    const id = el.getAttribute("id")
+    console.log(id)
+    const url = URL.createObjectURL(el.files[0])
+    if (id === "image1") {
+      console.log("image1")
+      setImageOneURL(url)
+    } else if (id === "image2") {
+      console.log("image2")
+      setImageTwoURL(url)
+    } else if (id === "image3") {
+      console.log("image3")
+      setImageThreeURL(url)
     }
-  };
+  }
 
   // Damage Level Change Handler
   const handleLevelChange = (event: ChangeEvent<any>) => {
-    const el = event.target as HTMLFormElement;
-    const value = el.value;
-    clearDynamicComponents();
-    setLevel(value);
+    const el = event.target as HTMLFormElement
+    const value = el.value
+    clearDynamicComponents()
+    setLevel(value)
     if (value === "Level 1") {
-      setLevelHeadElement(<LevelOneHead></LevelOneHead>);
+      setLevelHeadElement(<LevelOneHead></LevelOneHead>)
       setImageUploadElements([
         <Form.File
+          id="image1"
           key="image1"
-          name="image1"
+          name="file"
+          type="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
-      ]);
-      setShowLevelOnePreview(true);
+      ])
+      setShowLevelOnePreview(true)
       setOfferDiscountElement(
         <OfferDiscount
-          name="levelOneOfferDiscount"
+          name="offerDiscount"
           ref={register({ required: true })}
           onChange={handleOfferDiscount}
         />
-      );
+      )
     } else if (value === "Level 2") {
-      setLevelHeadElement(<LevelTwoHead></LevelTwoHead>);
+      setLevelHeadElement(<LevelTwoHead></LevelTwoHead>)
       setImageUploadElements([
         <Form.File
+          id="image1"
           key="image1"
-          name="image1"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
+          id="image2"
           key="image2"
-          name="image2"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
+          id="image3"
           key="image3"
-          name="image3"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
-      ]);
-      setShowAllPreviews(true);
+      ])
+      setShowAllPreviews(true)
       setOfferDiscountElement(
         <OfferDiscount
-          name="levelTwoOfferDiscount"
+          name="offerDiscount"
           ref={register({ required: true })}
           onChange={handleOfferDiscount}
         />
-      );
+      )
     } else if (value === "Level 3") {
-      setLevelHeadElement(<LevelThreeHead></LevelThreeHead>);
+      setLevelHeadElement(<LevelThreeHead></LevelThreeHead>)
       setImageUploadElements([
         <Form.File
+          id="image1"
           key="image1"
-          name="image1"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
+          id="image2"
           key="image2"
-          name="image2"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
+          id="image3"
           key="image3"
-          name="image3"
+          name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
-      ]);
-      setShowAllPreviews(true);
+      ])
+      setShowAllPreviews(true)
       setItemAmountElement(
         <ItemAmount
-          name="levelThreeItemAmount"
+          name="itemAmount"
           onChange={handleItemAmount}
           ref={register({ required: true })}
         />
-      );
+      )
     }
-  };
+  }
 
   // Handle Offer Discount
   const handleOfferDiscount = (event: ChangeEvent<any>) => {
-    const el = event.target as HTMLFormElement;
-    const value = el.value;
+    const el = event.target as HTMLFormElement
+    const value = el.value
 
     // Reset initial values if switched
-    setItemAmountElement(<div />);
-    setRefundAmountElement(<div />);
-    setNarvarReturnElement(<div />);
+    setItemAmountElement(<div />)
+    setRefundAmountElement(<div />)
+    setNarvarReturnElement(<div />)
 
-    // TODO: need a step to check if the item is out of stock
     if (level === "Level 1") {
       if (value === "Discount") {
         // Issue discount, submit form?
       } else if (value === "Refund") {
-        console.log("level 1 Refund");
         setRefundAmountElement(
           <RefundAmount
-            name="levelOneRefund"
+            name="refundAmount"
             ref={register({ required: true })}
           />
-        );
+        )
         //Submit
       } else if (value === "Replace") {
         setNarvarReturnElement(
@@ -196,38 +201,37 @@ const DDForm = (props: any) => {
             name="narvarReturn"
             ref={register({ required: true })}
           />
-        );
+        )
       }
     } else if (level === "Level 2") {
       if (value === "Discount") {
         // Issue discount, submit form?
-        console.log("Level 2 Discount");
       } else if (value === "Refund") {
         setRefundAmountElement(
           <RefundAmount
-            name="levelTwoRefund"
+            name="refundAmount"
             ref={register({ required: true })}
           />
-        );
+        )
       } else if (value === "Replace") {
         setItemAmountElement(
           <ItemAmount
-            name="levelTwoItemAmount"
+            name="itemAmount"
             onChange={handleItemAmount}
             ref={register({ required: true })}
           />
-        );
+        )
       }
     }
-  };
+  }
 
   const handleItemAmount = (event: ChangeEvent<any>) => {
-    const el = event.target as HTMLFormElement;
-    const value = el.value;
+    const el = event.target as HTMLFormElement
+    const value = el.value
 
     // reset values if change
-    setFileCaseElements([<div></div>]);
-    setReplacementOrderElement(<div></div>);
+    setFileCaseElements([<div></div>])
+    setReplacementOrderElement(<div></div>)
 
     if (value === "Over $50") {
       setFileCaseElements([
@@ -241,38 +245,45 @@ const DDForm = (props: any) => {
           key="actionNeeded"
           ref={register({ required: true })}
         />,
-      ]);
+      ])
     } else if (value === "Under $50") {
       setReplacementOrderElement(
         <ReplacementOrder
           name="replacementOrder"
           ref={register({ required: true })}
         />
-      );
+      )
     }
-  };
+  }
 
   const handleClose = () => {
-    setShow(false);
-  };
+    setShow(false)
+  }
 
   const handleShow = () => {
-    setShow(true);
-  };
+    setShow(true)
+  }
 
   const handleReview = (formData: any) => {
-    setData(formData);
-    handleShow();
-  };
+    setData(formData)
+    handleShow()
+  }
 
-  const onSubmit = (formData: any) => {
-    // TODO: API CALL TO SUBMIT DATA TO MONGO DATABASE
-    console.log(formData);
-  };
+  const onSubmit = (formData: any): void => {
+    console.log(formData)
+
+    addDamagedDefect(formData)
+      .then(({status}) => {
+        if  (status !== 201) {
+          throw new Error("Error saving data")
+        }
+      })
+      .catch(error => console.log(error))
+  }
 
   return (
     <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)} method="post" encType="multipart/form-data" action="/submit-damaged-defect">
         <h2>Damaged/Defective Form</h2>
         {/* Purchase Received */}
         <Form.Group>
@@ -380,10 +391,10 @@ const DDForm = (props: any) => {
         />
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default DDForm;
+export default DDForm
 
-const vendorList = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor 5"];
-const damageLevels = ["Level 1", "Level 2", "Level 3"];
+const vendorList = ["vendor1", "vendor2", "vendor3", "vendor4", "vendor 5"]
+const damageLevels = ["Level 1", "Level 2", "Level 3"]

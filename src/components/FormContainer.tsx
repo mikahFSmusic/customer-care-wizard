@@ -5,7 +5,6 @@ const FormContainer = () => {
   return (
     <div style={{ width: "100%", display: "flex", overflow: "scroll", margin:30, justifyContent:"center"}}>
       <DamageDefectFormV2 />
-      {/* <div style={{ height: "100%", width: "70%" }}>Form guide</div> */}
     </div>
   );
 };

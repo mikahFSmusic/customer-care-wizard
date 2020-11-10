@@ -1,27 +1,46 @@
-import fs from 'fs'
-import path from 'path'
-import multer from 'multer'
-import { Response, Request } from 'express'
-import { IDamagedDefect } from '../../types/damaged_defect'
-import DamagedDefectSchema from '../../models/damaged_defect'
+import fs from "fs";
+import path from "path";
+import multer from "multer";
+import { Response, Request } from "express";
+import { IDamagedDefect } from "../../types/damaged_defect";
+import DamagedDefectSchema from "../../models/damaged_defect";
 
 // Get all DD submissions
-const getAllDamagedDefects = async (req: Request, res: Response): Promise<void> => {
+const getAllDamagedDefects = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
-    const damagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find()
-    res.status(200).json({ damagedDefects })
+    const damagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find();
+    res.status(200).json({ damagedDefects });
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 // Add new DD form
 const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
   try {
-    const body = req.body as Pick<IDamagedDefect, "purchaseReceived" | "orderNumber" | "vendor" | "skuNumber" | "damageLevel" | "offerDiscount" | "refundAmount" |"narvarReturn" | "itemAmount" | "damageDescription" | "actionNeeded" | "image1" | "image2" | "image3">
-    const file = req.file
-    console.log(body)
-    console.log(file)
+    const body = req.body as Pick<
+      IDamagedDefect,
+      | "purchaseReceived"
+      | "orderNumber"
+      | "vendor"
+      | "skuNumber"
+      | "damageLevel"
+      | "offerDiscount"
+      | "refundAmount"
+      | "narvarReturn"
+      | "itemAmount"
+      | "damageDescription"
+      | "actionNeeded"
+      | "image1"
+      | "image2"
+      | "image3"
+    >;
+    const file = req.file;
+    console.log(body);
+    console.log(file);
     const damagedDefect: IDamagedDefect = new DamagedDefectSchema({
       purchaseReceived: body.purchaseReceived,
       orderNumber: body.orderNumber,
@@ -37,59 +56,68 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
       // image1: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
       // image2: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
       // image3: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) }
-      image1: file
-    })
+      image1: file,
+    });
 
-    const newDamagedDefect: IDamagedDefect = await damagedDefect.save()
+    const newDamagedDefect: IDamagedDefect = await damagedDefect.save();
 
-    res
-      .status(201)
-      .json({message: "Form submitted", newDamagedDefect})
+    res.status(201).json({ message: "Form submitted", newDamagedDefect });
     console.log("form submitted to server");
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 // Update DD form
 
-const updateDamagedDefect = async (req: Request, res: Response): Promise<void> => {
+const updateDamagedDefect = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const {
       params: { id },
-      body
-    } = req
+      body,
+    } = req;
     const updateDamagedDefect: IDamagedDefect | null = await DamagedDefectSchema.findByIdAndUpdate(
-      {_id: id},
+      { _id: id },
       body
-    )
-    const allDamagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find()
+    );
+    const allDamagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find();
     res.status(200).json({
       message: "Damaged Defect Submission Updated",
       damagedDefect: updateDamagedDefect,
-      damagedDefects: allDamagedDefects
-    })
+      damagedDefects: allDamagedDefects,
+    });
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 // Delete DD form entry
 
-const deleteDamagedDefect = async (req: Request, res: Response): Promise<void> => {
+const deleteDamagedDefect = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const deletedDamagedDefect: IDamagedDefect | null = await DamagedDefectSchema.findByIdAndRemove(
       req.params.id
-    )
-    const allDamagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find()
+    );
+    const allDamagedDefects: IDamagedDefect[] = await DamagedDefectSchema.find();
     res.status(200).json({
       message: "Damaged Defect Entry Deleted.",
       damagedDefect: deletedDamagedDefect,
-      damagedDefects: allDamagedDefects
-    })
+      damagedDefects: allDamagedDefects,
+    });
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
-export { getAllDamagedDefects, addDamagedDefect, updateDamagedDefect, deleteDamagedDefect }
+export {
+  getAllDamagedDefects,
+  addDamagedDefect,
+  updateDamagedDefect,
+  deleteDamagedDefect,
+};

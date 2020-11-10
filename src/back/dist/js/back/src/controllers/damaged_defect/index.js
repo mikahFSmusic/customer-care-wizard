@@ -47,10 +47,12 @@ const addDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, functio
             // image1: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
             // image2: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
             // image3: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) }
-            image1: file,
+            image1: file
         });
         const newDamagedDefect = yield damagedDefect.save();
-        res.status(201).json({ message: "Form submitted", newDamagedDefect });
+        res
+            .status(201)
+            .json({ message: "Form submitted", newDamagedDefect });
         console.log("form submitted to server");
     }
     catch (error) {
@@ -61,13 +63,13 @@ exports.addDamagedDefect = addDamagedDefect;
 // Update DD form
 const updateDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { params: { id }, body, } = req;
+        const { params: { id }, body } = req;
         const updateDamagedDefect = yield damaged_defect_1.default.findByIdAndUpdate({ _id: id }, body);
         const allDamagedDefects = yield damaged_defect_1.default.find();
         res.status(200).json({
             message: "Damaged Defect Submission Updated",
             damagedDefect: updateDamagedDefect,
-            damagedDefects: allDamagedDefects,
+            damagedDefects: allDamagedDefects
         });
     }
     catch (error) {
@@ -83,7 +85,7 @@ const deleteDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, func
         res.status(200).json({
             message: "Damaged Defect Entry Deleted.",
             damagedDefect: deletedDamagedDefect,
-            damagedDefects: allDamagedDefects,
+            damagedDefects: allDamagedDefects
         });
     }
     catch (error) {

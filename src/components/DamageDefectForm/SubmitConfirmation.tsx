@@ -19,33 +19,33 @@ type ElementObject = {
 const getNewKey = (key:string) => {
   switch(key) {
     case "purchaseReceived":
-      return "Purchase Received?: ";
+      return "Purchase Received?: "
     case "orderNumber":
-      return "Order Number: ";
+      return "Order Number: "
     case "vendor":
-      return "Vendor: ";
+      return "Vendor: "
     case "skuNumber":
-      return "SKU #: ";
+      return "SKU #: "
     case "damageLevel":
       return "Damage Level: "
     case "image1":
-      return "Image 1: ";
+      return "Image 1: "
     case "image2":
-      return "Image 2: ";
+      return "Image 2: "
     case "image3":
-      return "Image 3: ";
+      return "Image 3: "
     case "levelOneOfferDiscount" || "levelTwoOfferDiscount" || "levelThreeOfferDiscount":
       return "Discount/Refund/Return: "
     case "levelOneRefund" || "levelTwoRefund" || "levelThreeRefund":
-      return "Refund Amount: ";
+      return "Refund Amount: "
     case "levelTwoItemAmount" || "levelThreeItemAmount":
       return "Item Amount: "
     case "damageDescription":
-      return "Damage Description: ";
+      return "Damage Description: "
     case "actionNeeded":
-      return "Action Needed: ";
+      return "Action Needed: "
     case "replacementOrder":
-      return "Replacement Order #";
+      return "Replacement Order #"
   }
 }
 
@@ -68,7 +68,7 @@ const SubmitConfirmation = (props: SubmitConfirmationProps) => {
         } else if (typeof entry[1] == "object" && entry[1] !== null) {
           const el = entry[1] as HTMLFormElement;
           const url = URL.createObjectURL(el[0]);
-          outputEntries[i] = [newKey, <img width="50px" height="50px" src={url}/>]
+          outputEntries[i] = [newKey, <img alt="damaged preview" width="50px" height="50px" src={url}/>]
           }
 
       }

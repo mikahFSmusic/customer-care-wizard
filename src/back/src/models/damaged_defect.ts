@@ -8,58 +8,58 @@ const DamagedDefectSchema = new Schema(
     },
 
     orderNumber: {
-      type: String
+      type: String,
     },
 
     vendor: {
-      type: String
+      type: String,
     },
 
     skuNumber: {
-      type: String
+      type: String,
     },
 
     damageLevel: {
-      type: String
+      type: String,
     },
 
     offerDiscount: {
-      type: String
+      type: String,
     },
 
     refundAmount: {
-      type: String
+      type: String,
     },
 
     narvarReturn: {
-      type: String
+      type: String,
     },
 
     itemAmount: {
-      type: String
+      type: String,
     },
 
     damageDescription: {
-      type: String
+      type: String,
     },
 
     actionNeeded: {
-      type: String
+      type: String,
     },
 
     image1: {
-      data: Buffer
+      data: Buffer,
     },
 
     image2: {
-      data: Buffer
+      data: Buffer,
     },
 
     image3: {
-      data: Buffer
+      data: Buffer,
     },
   },
   { timestamps: true }
-)
+);
 
 export default model<IDamagedDefect>("damaged_defect", DamagedDefectSchema);

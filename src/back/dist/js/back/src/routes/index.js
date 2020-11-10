@@ -20,7 +20,8 @@ const damaged_defect_1 = __importDefault(require("../models/damaged_defect"));
 const crypto_1 = __importDefault(require("crypto"));
 const multer_1 = __importDefault(require("multer"));
 const damaged_defect_2 = require("../controllers/damaged_defect");
-require("dotenv/config");
+const API_1 = require("../../../API");
+require('dotenv/config');
 const router = express_1.Router();
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@maisonettecluster0.p8m37.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
 const storage = new multer_gridfs_storage_1.default({
@@ -32,18 +33,18 @@ const storage = new multer_gridfs_storage_1.default({
                 if (err) {
                     return reject(err);
                 }
-                const filename = buf.toString("hex") + path_1.default.extname(file.originalname);
+                const filename = buf.toString('hex') + path_1.default.extname(file.originalname);
                 const fileInfo = {
                     filename: filename,
-                    bucketName: "dduploads",
+                    bucketName: 'dduploads'
                 };
                 resolve(fileInfo);
             });
         });
-    },
+    }
 });
 const upload = multer_1.default({ storage });
-router.post("/submit-damaged-defect", upload.array("file", 1), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/submit-damaged-defect', upload.array('file', 1), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
         const files = req.files;
@@ -61,10 +62,12 @@ router.post("/submit-damaged-defect", upload.array("file", 1), (req, res, next) 
             itemAmount: body.itemAmount,
             damageDescription: body.damageDescription,
             actionNeeded: body.actionNeeded,
-            image1: req.files,
+            image1: req.files
         });
         const newDamagedDefect = yield damagedDefect.save();
-        res.status(201).json({ message: "Form submitted", newDamagedDefect });
+        res
+            .status(201)
+            .json({ message: "Form submitted", newDamagedDefect });
         console.log("form submitted to server");
     }
     catch (error) {
@@ -73,5 +76,5 @@ router.post("/submit-damaged-defect", upload.array("file", 1), (req, res, next) 
 }));
 router.get("/damaged-defects", damaged_defect_2.getAllDamagedDefects);
 router.put("/update-damaged-defect/:id", damaged_defect_2.updateDamagedDefect);
-router.delete("/delete-damaged-defect/:id", damaged_defect_2.deleteDamagedDefect);
+router.delete("/delete-damaged-defect/:id", API_1.deleteDamagedDefect);
 exports.default = router;

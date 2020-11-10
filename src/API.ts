@@ -1,9 +1,8 @@
-import axios, { AxiosResponse } from 'axios'
-import damaged_defect from './back/src/models/damaged_defect'
+import axios, { AxiosResponse } from "axios";
 
-const baseUrl: string = "http://localhost:4000"
+const baseUrl: string = "http://localhost:4000";
 
-export const addDamagedDefect = async(
+export const addDamagedDefect = async (
   formData: IDamagedDefect
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
@@ -21,35 +20,53 @@ export const addDamagedDefect = async(
       actionNeeded: formData.actionNeeded,
       image1: formData.image1,
       image2: formData.image2,
-      image3: formData.image3
-    }
+      image3: formData.image3,
+    };
     const saveDamagedDefect: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl + "/submit-damaged-defect",
       damagedDefect
-    )
-    return saveDamagedDefect
+    );
+    return saveDamagedDefect;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-export const getAllDamagedDefects = async(): Promise<AxiosResponse<ApiDataType>> => {
+export const getAllDamagedDefects = async (): Promise<
+  AxiosResponse<ApiDataType>
+> => {
   try {
-    const damagedDefects: AxiosResponse<ApiDataType> =  await axios.get(
+    const damagedDefects: AxiosResponse<ApiDataType> = await axios.get(
       baseUrl + "/damaged-defects"
-    )
-    return damagedDefects
+    );
+    return damagedDefects;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-export const updateDamagedDefect = async(
+export const updateDamagedDefect = async (
   damagedDefect: IDamagedDefect,
   formData: IDamagedDefect
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    const damagedDefectUpdate: Pick<IDamagedDefect, "purchaseReceived" | "orderNumber" | "vendor" | "skuNumber" | "damageLevel" | "offerDiscount" | "refundAmount" |"narvarReturn" | "itemAmount" | "damageDescription" | "actionNeeded" | "image1" | "image2" | "image3"> = {
+    const damagedDefectUpdate: Pick<
+      IDamagedDefect,
+      | "purchaseReceived"
+      | "orderNumber"
+      | "vendor"
+      | "skuNumber"
+      | "damageLevel"
+      | "offerDiscount"
+      | "refundAmount"
+      | "narvarReturn"
+      | "itemAmount"
+      | "damageDescription"
+      | "actionNeeded"
+      | "image1"
+      | "image2"
+      | "image3"
+    > = {
       purchaseReceived: formData.purchaseReceived,
       orderNumber: formData.orderNumber,
       vendor: formData.vendor,
@@ -63,27 +80,27 @@ export const updateDamagedDefect = async(
       actionNeeded: formData.actionNeeded,
       image1: formData.image1,
       image2: formData.image2,
-      image3: formData.image3
-    }
+      image3: formData.image3,
+    };
     const updatedDamagedDefect: AxiosResponse<ApiDataType> = await axios.put(
       `${baseUrl}/update-damaged-defect/${damagedDefect._id}`,
       damagedDefectUpdate
-    )
-    return updatedDamagedDefect
+    );
+    return updatedDamagedDefect;
   } catch (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-}
+};
 
-export const deleteDamagedDefect = async(
+export const deleteDamagedDefect = async (
   _id: string
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const deletedDamagedDefect: AxiosResponse<ApiDataType> = await axios.delete(
       `${baseUrl}/delete-damaged-defect/${_id}`
-    )
-    return deletedDamagedDefect
-  } catch (error){
-    throw new Error(error)
+    );
+    return deletedDamagedDefect;
+  } catch (error) {
+    throw new Error(error);
   }
-}
+};

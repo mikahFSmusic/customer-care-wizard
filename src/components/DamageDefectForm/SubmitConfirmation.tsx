@@ -55,7 +55,6 @@ const SubmitConfirmation = (props: SubmitConfirmationProps) => {
   const formatData = (data:any) => {
     if (data !== undefined) {
       const dataEntries = Object.entries(data);
-      console.log(dataEntries)
       let outputEntries:any = []
       for (let i = 0; i < dataEntries.length; i++) {
         const entry = dataEntries[i];

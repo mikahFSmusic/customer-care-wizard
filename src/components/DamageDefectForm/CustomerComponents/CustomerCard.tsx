@@ -28,7 +28,8 @@ export const CustomerCard = (props: CustomerCardProps) => {
     border: "1px solid gray",
     borderRadius: "5px",
     padding: "10px",
-    margin: "10px"
+    margin: "10px",
+    boxShadow: "1px 3px 1px #9E9E9E"
   }
 
   const handleMouseEnter = () => {
@@ -51,7 +52,6 @@ export const CustomerCard = (props: CustomerCardProps) => {
         <Col><p>{email}</p></Col>
         <Col><p>{phone}</p></Col>
       </Row>
-
     </div>
   )
 }

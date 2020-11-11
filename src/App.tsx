@@ -26,7 +26,7 @@ function App() {
     display:'flex',
     justifyContent: 'center',
     alignContent: 'center',
-    backgroundColor:'#fdf8e8',
+    backgroundColor:'white',
   }
 
   return (

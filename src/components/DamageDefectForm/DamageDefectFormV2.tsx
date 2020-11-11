@@ -11,6 +11,7 @@ import ReplacementOrder from "./FormComponents/ReplacementOrder";
 import NarvarReturn from "./FormComponents/NarvarReturn";
 import SubmitConfirmation from "./SubmitConfirmation";
 import { addDamagedDefect } from "./../../API";
+import { ImageUpload } from "./FormComponents/ImageUpload";
 
 const DDForm = (props: any) => {
   let level: string = "";
@@ -64,6 +65,7 @@ const DDForm = (props: any) => {
     const id = el.getAttribute("id");
     console.log(id);
     const url = URL.createObjectURL(el.files[0]);
+    console.log(url)
     if (id === "image1") {
       console.log("image1");
       setImageOneURL(url);
@@ -85,14 +87,7 @@ const DDForm = (props: any) => {
     if (value === "Level 1") {
       setLevelHeadElement(<h2>Level One</h2>);
       setImageUploadElements([
-        <Form.File
-          id="image1"
-          key="image1"
-          name="file"
-          type="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
+        <ImageUpload />
       ]);
       setShowLevelOnePreview(true);
       setOfferDiscountElement(
@@ -107,21 +102,21 @@ const DDForm = (props: any) => {
       setImageUploadElements([
         <Form.File
           id="image1"
-          key="image1"
+          key="image"
           name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
           id="image2"
-          key="image2"
+          key="image"
           name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
         />,
         <Form.File
           id="image3"
-          key="image3"
+          key="image"
           name="file"
           ref={register({ required: true })}
           onChange={handleImageUpload}
@@ -278,15 +273,29 @@ const DDForm = (props: any) => {
       .catch((error) => console.log(error));
   };
 
+  const formContainerStyles = {
+    margin: "10px",
+    height: "95%"
+  };
+
+  const formStyles = {
+    borderRadius: "10px",
+    padding: '10px',
+    border: '1px solid gray',
+    boxShadow: "1px 3px 1px #9E9E9E"
+  }
+
   return (
-    <div>
+    <div style={formContainerStyles}>
       <Form
         onSubmit={handleSubmit(onSubmit)}
         method="post"
         encType="multipart/form-data"
         action="/submit-damaged-defect"
-      >
+        style={formStyles}
+        >
         <h2>Damaged/Defective Form</h2>
+        <br />
         {/* Purchase Received */}
         <Form.Group>
           <Form.Label>Purchase Received</Form.Label>

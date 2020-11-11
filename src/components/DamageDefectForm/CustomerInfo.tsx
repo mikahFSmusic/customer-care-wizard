@@ -49,11 +49,6 @@ const searchCustomers = (customers: any, pattern: string) => {
 export const CustomerInfo = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [validCustomers, setValidCustomers] = useState<Array<Object>>();
-  const customerInfoStyle = {
-    borderRight: "2px solid gray",
-    margin: "10px",
-    height: "95%",
-  };
 
   const handleSearchChange = async (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
@@ -66,6 +61,13 @@ export const CustomerInfo = () => {
     } else {
       console.log("loading customer data");
     }
+  };
+
+  // Styles
+  const customerInfoStyle = {
+    borderRight: "2px solid gray",
+    margin: "10px",
+    height: "95%",
   };
 
   const resultsStyles = {

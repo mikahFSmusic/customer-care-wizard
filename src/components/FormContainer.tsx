@@ -17,7 +17,7 @@ const FormContainer = () => {
       <Col style={{ height: "100%" }}>
         <CustomerInfo />
       </Col>
-      <Col>
+      <Col style={{ height: "100%"}}>
         <DamageDefectFormV2 />
       </Col>
     </div>

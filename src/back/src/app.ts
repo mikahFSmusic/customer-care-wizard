@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import damagedDefectRoutes from './routes'
-require('dotenv/config')
-
+require('dotenv').config()
 const app: Express = express()
 
 const PORT: string | number = process.env.PORT || 4000

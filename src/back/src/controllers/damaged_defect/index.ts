@@ -5,6 +5,37 @@ import { Response, Request } from "express";
 import { IDamagedDefect } from "../../types/damaged_defect";
 import DamagedDefectSchema from "../../models/damaged_defect";
 
+import { upload } from '../../services/image_upload'
+
+const singleUpload = upload.single("image");
+const uploadDamageImage = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const uid = req.params.id
+    console.log(req.params)
+    singleUpload(req, res, function(error:any) {
+      if (error) {
+        return res.json({
+          success: false,
+          errors: {
+            title: "Image upload error",
+            detail: error.message,
+            error: error
+          }
+        })
+      }
+    })
+    let update = { damageImage: req.file.fieldname }
+    DamagedDefectSchema.findByIdAndUpdate(uid, update, {new: true})
+      .then((image) => res.status(200).json({ success: true, image: image }))
+      .catch((error) => res.status(400).json({ success: false, error: error}))
+  } catch (error) {
+    throw error
+  }
+}
+
 // Get all DD submissions
 const getAllDamagedDefects = async (
   req: Request,
@@ -115,6 +146,7 @@ const deleteDamagedDefect = async (
 };
 
 export {
+  uploadDamageImage,
   getAllDamagedDefects,
   addDamagedDefect,
   updateDamagedDefect,

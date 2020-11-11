@@ -12,8 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteDamagedDefect = exports.updateDamagedDefect = exports.addDamagedDefect = exports.getAllDamagedDefects = void 0;
+exports.deleteDamagedDefect = exports.updateDamagedDefect = exports.addDamagedDefect = exports.getAllDamagedDefects = exports.uploadDamageImage = void 0;
 const damaged_defect_1 = __importDefault(require("../../models/damaged_defect"));
+const image_upload_1 = require("../../services/image_upload");
+const singleUpload = image_upload_1.upload.single("image");
+const uploadDamageImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const uid = req.params.id;
+        console.log(req.params);
+        singleUpload(req, res, function (error) {
+            if (error) {
+                return res.json({
+                    success: false,
+                    errors: {
+                        title: "Image upload error",
+                        detail: error.message,
+                        error: error
+                    }
+                });
+            }
+        });
+        let update = { damageImage: req.file.fieldname };
+        damaged_defect_1.default.findByIdAndUpdate(uid, update, { new: true })
+            .then((image) => res.status(200).json({ success: true, image: image }))
+            .catch((error) => res.status(400).json({ success: false, error: error }));
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.uploadDamageImage = uploadDamageImage;
 // Get all DD submissions
 const getAllDamagedDefects = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -44,10 +72,9 @@ const addDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, functio
             itemAmount: body.itemAmount,
             damageDescription: body.damageDescription,
             actionNeeded: body.actionNeeded,
-            // image1: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
-            // image2: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
-            // image3: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) }
-            image1: file,
+            image1: body.image1,
+            image2: body.image2,
+            image3: body.image3
         });
         const newDamagedDefect = yield damagedDefect.save();
         res.status(201).json({ message: "Form submitted", newDamagedDefect });

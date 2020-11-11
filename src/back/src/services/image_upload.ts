@@ -1,9 +1,9 @@
 import aws from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
+require('dotenv').config()
 
 const s3 = new aws.S3();
-
 aws.config.update({
   secretAccessKey: process.env.S3_ACCESS_SECRET,
   accessKeyId: process.env.S3_ACCESS_KEY,

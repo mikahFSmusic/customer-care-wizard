@@ -8,7 +8,6 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const routes_1 = __importDefault(require("./routes"));
-const multer = require('multer');
 require('dotenv/config');
 const app = express_1.default();
 const PORT = process.env.PORT || 4000;
@@ -25,12 +24,4 @@ mongoose_1.default
 })
     .catch(error => {
     throw error;
-});
-const connection = mongoose_1.default.createConnection(uri, options);
-let gfs;
-connection.once('open', () => {
-    gfs = new mongoose_1.default.mongo.GridFSBucket(connection.db, {
-        bucketName: "dduploads"
-    });
-    console.log("grid fs bucket created");
 });

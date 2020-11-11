@@ -48,15 +48,15 @@ const DamagedDefectSchema = new Schema(
     },
 
     image1: {
-      data: Buffer,
+      type: String,
     },
 
     image2: {
-      data: Buffer,
+      type: String,
     },
 
     image3: {
-      data: Buffer,
+      type: String,
     },
   },
   { timestamps: true }

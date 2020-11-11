@@ -36,13 +36,13 @@ const DamagedDefectSchema = new mongoose_1.Schema({
         type: String,
     },
     image1: {
-        data: Buffer,
+        data: String,
     },
     image2: {
-        data: Buffer,
+        data: String,
     },
     image3: {
-        data: Buffer,
+        data: String,
     },
 }, { timestamps: true });
 exports.default = mongoose_1.model("damaged_defect", DamagedDefectSchema);

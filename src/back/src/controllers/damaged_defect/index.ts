@@ -53,10 +53,9 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
       itemAmount: body.itemAmount,
       damageDescription: body.damageDescription,
       actionNeeded: body.actionNeeded,
-      // image1: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
-      // image2: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) },
-      // image3: { data: fs.readFileSync(path.join(__dirname + '/uploads' + req.file.filename)) }
-      image1: file,
+      image1: body.image1,
+      image2: body.image2,
+      image3: body.image3
     });
 
     const newDamagedDefect: IDamagedDefect = await damagedDefect.save();

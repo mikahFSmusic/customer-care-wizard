@@ -3,11 +3,6 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import damagedDefectRoutes from './routes'
-import methodOverride from 'method-override'
-import crypto from 'crypto'
-import path from 'path'
-const multer = require('multer')
-import GridFsStorage from 'multer-gridfs-storage'
 require('dotenv/config')
 
 const app: Express = express()
@@ -35,15 +30,3 @@ mongoose
   .catch(error =>{
     throw error
   })
-
-const connection = mongoose.createConnection(uri, options)
-
-let gfs;
-connection.once('open', ()=> {
-    gfs = new mongoose.mongo.GridFSBucket(connection.db, {
-    bucketName: "dduploads"
-  })
-  console.log("grid fs bucket created")
-})
-
-

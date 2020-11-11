@@ -1,13 +1,6 @@
 import { Router } from "express";
-import mongoose from "mongoose";
-// import { addDamagedDefect } from '../controllers/damaged_defect'
-import path from "path";
-import GridFsStorage from "multer-gridfs-storage";
-import { Response, Request } from "express";
 import { IDamagedDefect } from "../types/damaged_defect";
 import DamagedDefectSchema from "../models/damaged_defect";
-import crypto from "crypto";
-import multer from "multer";
 import {
   addDamagedDefect,
   getAllDamagedDefects,
@@ -15,81 +8,33 @@ import {
   deleteDamagedDefect
 } from "../controllers/damaged_defect";
 require("dotenv/config");
+
+import { upload } from '../services/image_upload'
+
 const router: Router = Router();
+const singleUpload = upload.single("image");
 
-const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@maisonettecluster0.p8m37.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
-
-const storage = new GridFsStorage({
-  url: uri,
-  file: (req, file) => {
-    console.log("file being stored.");
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
+router.post("/upload-damage-image", function(req, res) {
+  const uid = req.params.id
+  singleUpload(req, res, function(error:any) {
+    if (error) {
+      return res.json({
+        success:false,
+        errors: {
+          title: "Image Upload Error",
+          detail: error.message,
+          error: error
         }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: "dduploads",
-        };
-        resolve(fileInfo);
-      });
-    });
-  },
-});
-
-const upload = multer({ storage });
-
-router.post(
-  "/submit-damaged-defect",
-  upload.array("file", 1),
-  async (req: Request, res: Response, next): Promise<void> => {
-    try {
-      const body = req.body as Pick<
-        IDamagedDefect,
-        | "purchaseReceived"
-        | "orderNumber"
-        | "vendor"
-        | "skuNumber"
-        | "damageLevel"
-        | "offerDiscount"
-        | "refundAmount"
-        | "narvarReturn"
-        | "itemAmount"
-        | "damageDescription"
-        | "actionNeeded"
-        | "image1"
-        | "image2"
-        | "image3"
-      >;
-      const files = req.files;
-      console.log(body);
-      console.log(files);
-      const damagedDefect: IDamagedDefect = new DamagedDefectSchema({
-        purchaseReceived: body.purchaseReceived,
-        orderNumber: body.orderNumber,
-        vendor: body.vendor,
-        skuNumber: body.skuNumber,
-        damageLevel: body.damageLevel,
-        offerDiscount: body.offerDiscount,
-        refundAmount: body.refundAmount,
-        narvarReturn: body.narvarReturn,
-        itemAmount: body.itemAmount,
-        damageDescription: body.damageDescription,
-        actionNeeded: body.actionNeeded,
-        image1: req.files,
-      });
-
-      const newDamagedDefect: IDamagedDefect = await damagedDefect.save();
-
-      res.status(201).json({ message: "Form submitted", newDamagedDefect });
-      console.log("form submitted to server");
-    } catch (error) {
-      throw error;
+      })
     }
-  }
-);
+    let update = { profilePicture: req.file.fieldname }
+    DamagedDefectSchema.findByIdAndUpdate(uid, update, {new: true})
+      .then((user) => res.status(200).json({ success: true, user: user }))
+      .catch((error) => res.status(400).json({ success: false, error: error }))
+  })
+})
+
+router.post("/submit-damaged-defect", addDamagedDefect);
 
 router.get("/damaged-defects", getAllDamagedDefects);
 

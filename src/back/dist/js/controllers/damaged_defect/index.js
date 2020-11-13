@@ -15,12 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDamagedDefect = exports.updateDamagedDefect = exports.addDamagedDefect = exports.getAllDamagedDefects = exports.uploadDamageImage = void 0;
 const damaged_defect_1 = __importDefault(require("../../models/damaged_defect"));
 const image_upload_1 = require("../../services/image_upload");
-const singleUpload = image_upload_1.upload.single("image");
+// const singleUpload = upload.single("image");
+const arrayUpload = image_upload_1.upload.array("images", 3);
 const uploadDamageImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const uid = req.params.id;
-        console.log(req.params);
-        singleUpload(req, res, function (error) {
+        // console.log("Files: ")
+        // console.log(req.files)
+        // console.log()
+        let files = req.files;
+        arrayUpload(req, res, function (error) {
             if (error) {
                 return res.json({
                     success: false,
@@ -31,11 +34,16 @@ const uploadDamageImage = (req, res) => __awaiter(void 0, void 0, void 0, functi
                     }
                 });
             }
+            else {
+                console.log("\n \n \n");
+                console.log("no error return");
+                console.log(files);
+                return res.json({
+                    success: true,
+                    images: files
+                });
+            }
         });
-        let update = { damageImage: req.file.fieldname };
-        damaged_defect_1.default.findByIdAndUpdate(uid, update, { new: true })
-            .then((image) => res.status(200).json({ success: true, image: image }))
-            .catch((error) => res.status(400).json({ success: false, error: error }));
     }
     catch (error) {
         throw error;
@@ -72,9 +80,7 @@ const addDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, functio
             itemAmount: body.itemAmount,
             damageDescription: body.damageDescription,
             actionNeeded: body.actionNeeded,
-            image1: body.image1,
-            image2: body.image2,
-            image3: body.image3
+            images: body.images
         });
         const newDamagedDefect = yield damagedDefect.save();
         res.status(201).json({ message: "Form submitted", newDamagedDefect });

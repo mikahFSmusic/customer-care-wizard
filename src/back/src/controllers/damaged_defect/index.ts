@@ -1,21 +1,20 @@
-import fs from "fs";
-import path from "path";
-import multer from "multer";
 import { Response, Request } from "express";
 import { IDamagedDefect } from "../../types/damaged_defect";
 import DamagedDefectSchema from "../../models/damaged_defect";
-
 import { upload } from '../../services/image_upload'
 
-const singleUpload = upload.single("image");
+// const singleUpload = upload.single("image");
+const arrayUpload = upload.array("images", 3)
 const uploadDamageImage = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const uid = req.params.id
-    console.log(req.params)
-    singleUpload(req, res, function(error:any) {
+    // console.log("Files: ")
+    // console.log(req.files)
+    // console.log()
+    let files = req.files
+    arrayUpload(req, res, function(error:any) {
       if (error) {
         return res.json({
           success: false,
@@ -25,12 +24,17 @@ const uploadDamageImage = async (
             error: error
           }
         })
+      } else {
+        console.log("\n \n \n")
+        console.log("no error return")
+        console.log(files)
+        return res.json({
+          success: true,
+           images: files
+        })
       }
     })
-    let update = { damageImage: req.file.fieldname }
-    DamagedDefectSchema.findByIdAndUpdate(uid, update, {new: true})
-      .then((image) => res.status(200).json({ success: true, image: image }))
-      .catch((error) => res.status(400).json({ success: false, error: error}))
+
   } catch (error) {
     throw error
   }
@@ -65,9 +69,7 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
       | "itemAmount"
       | "damageDescription"
       | "actionNeeded"
-      | "image1"
-      | "image2"
-      | "image3"
+      | "images"
     >;
     const file = req.file;
     console.log(body);
@@ -84,9 +86,7 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
       itemAmount: body.itemAmount,
       damageDescription: body.damageDescription,
       actionNeeded: body.actionNeeded,
-      image1: body.image1,
-      image2: body.image2,
-      image3: body.image3
+      images: body.images
     });
 
     const newDamagedDefect: IDamagedDefect = await damagedDefect.save();

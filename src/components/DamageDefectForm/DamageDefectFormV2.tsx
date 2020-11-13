@@ -65,7 +65,7 @@ const DDForm = (props: any) => {
     const id = el.getAttribute("id");
     console.log(id);
     const url = URL.createObjectURL(el.files[0]);
-    console.log(url)
+    console.log(url);
     if (id === "image1") {
       console.log("image1");
       setImageOneURL(url);
@@ -86,9 +86,7 @@ const DDForm = (props: any) => {
     setLevel(value);
     if (value === "Level 1") {
       setLevelHeadElement(<h2>Level One</h2>);
-      setImageUploadElements([
-        <ImageUpload />
-      ]);
+      setImageUploadElements([<ImageUpload />]);
       setShowLevelOnePreview(true);
       setOfferDiscountElement(
         <OfferDiscount
@@ -99,29 +97,7 @@ const DDForm = (props: any) => {
       );
     } else if (value === "Level 2") {
       setLevelHeadElement(<h2>Level Two</h2>);
-      setImageUploadElements([
-        <Form.File
-          id="image1"
-          key="image"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-        <Form.File
-          id="image2"
-          key="image"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-        <Form.File
-          id="image3"
-          key="image"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-      ]);
+      setImageUploadElements([<ImageUpload />]);
       setShowAllPreviews(true);
       setOfferDiscountElement(
         <OfferDiscount
@@ -132,29 +108,7 @@ const DDForm = (props: any) => {
       );
     } else if (value === "Level 3") {
       setLevelHeadElement(<h2>Level Three</h2>);
-      setImageUploadElements([
-        <Form.File
-          id="image1"
-          key="image1"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-        <Form.File
-          id="image2"
-          key="image2"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-        <Form.File
-          id="image3"
-          key="image3"
-          name="file"
-          ref={register({ required: true })}
-          onChange={handleImageUpload}
-        />,
-      ]);
+      setImageUploadElements([<ImageUpload />]);
       setShowAllPreviews(true);
       setItemAmountElement(
         <ItemAmount
@@ -275,15 +229,13 @@ const DDForm = (props: any) => {
 
   const formContainerStyles = {
     margin: "10px",
-    height: "95%"
+    height: "95%",
   };
 
   const formStyles = {
     borderRadius: "10px",
-    padding: '10px',
-    border: '1px solid gray',
-    boxShadow: "1px 3px 1px #9E9E9E"
-  }
+    padding: "10px"
+  };
 
   return (
     <div style={formContainerStyles}>
@@ -293,7 +245,8 @@ const DDForm = (props: any) => {
         encType="multipart/form-data"
         action="/submit-damaged-defect"
         style={formStyles}
-        >
+        className="z-depth-1"
+      >
         <h2>Damaged/Defective Form</h2>
         <br />
         {/* Purchase Received */}
@@ -373,40 +326,6 @@ const DDForm = (props: any) => {
         {/* Level Paths */}
         {levelHeadElement}
         <Form.Group>{imageUploadElements}</Form.Group>
-        <Form.Group>
-          {showLevelOnePreview ? (
-            <div>
-              <img
-                alt="preview 1"
-                width="100px"
-                height="100px"
-                src={imageOneURL}
-              ></img>
-            </div>
-          ) : null}
-          {showAllPreviews ? (
-            <div>
-              <img
-                alt="preview 1"
-                width="100px"
-                height="100px"
-                src={imageOneURL}
-              ></img>
-              <img
-                alt="preview 2"
-                width="100px"
-                height="100px"
-                src={imageTwoURL}
-              ></img>
-              <img
-                alt="preview 3"
-                width="100px"
-                height="100px"
-                src={imageThreeURL}
-              ></img>
-            </div>
-          ) : null}
-        </Form.Group>
         <Form.Group>{offerDiscountElement}</Form.Group>
         <Form.Group>{narvarReturnElement}</Form.Group>
         <Form.Group>{refundAmountElement}</Form.Group>

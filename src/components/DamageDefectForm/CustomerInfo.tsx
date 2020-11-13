@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import Fuse from "fuse.js";
 import { CustomerCard } from "./CustomerComponents/CustomerCard";
@@ -68,6 +68,8 @@ export const CustomerInfo = () => {
     borderRight: "2px solid gray",
     margin: "10px",
     height: "95%",
+    borderRadius: "10px",
+    padding: "10px"
   };
 
   const resultsStyles = {
@@ -76,7 +78,7 @@ export const CustomerInfo = () => {
   };
 
   return (
-    <div style={customerInfoStyle}>
+    <div style={customerInfoStyle} className="z-depth-1">
       <MDBCol md="12">
         <h2>Customer Info</h2>
         <MDBFormInline

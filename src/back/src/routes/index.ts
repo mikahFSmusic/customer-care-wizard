@@ -6,11 +6,11 @@ import {
   deleteDamagedDefect,
   uploadDamageImage
 } from "../controllers/damaged_defect";
-require("dotenv/config");
+import { upload } from '../services/image_upload'
 
 const router: Router = Router();
 
-router.post("/upload-damage-image", uploadDamageImage)
+router.post("/upload-damage-image", upload.array("images", 3), uploadDamageImage)
 
 router.post("/submit-damaged-defect", addDamagedDefect);
 

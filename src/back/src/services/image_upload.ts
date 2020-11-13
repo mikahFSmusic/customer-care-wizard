@@ -13,6 +13,8 @@ aws.config.update({
 // get these types fixed
 const fileFilter = (req: any, file: any, callback: any) => {
   console.log("filtering file")
+  console.log(file)
+  console.log("\n \n \n")
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     callback(null, true);
   } else {
@@ -30,7 +32,7 @@ export const upload = multer({
     s3,
     bucket: "maisonettedamagedefect",
     metadata: function (req, file, callback) {
-      callback(null, { fieldName: "TESTING_METADATA" });
+      callback(null, { fieldName: file.fieldname });
     },
     key: function (req, file, callback) {
       callback(null, Date.now().toString());

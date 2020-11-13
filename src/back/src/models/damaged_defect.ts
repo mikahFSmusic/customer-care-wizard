@@ -1,5 +1,7 @@
 import { IDamagedDefect } from "./../types/damaged_defect";
 import { model, Schema } from "mongoose";
+import express from 'express'
+import { MulterError } from "multer";
 
 const DamagedDefectSchema = new Schema(
   {
@@ -47,17 +49,9 @@ const DamagedDefectSchema = new Schema(
       type: String,
     },
 
-    image1: {
-      type: String,
-    },
-
-    image2: {
-      type: String,
-    },
-
-    image3: {
-      type: String,
-    },
+    images: {
+      type: [Object],
+    }
   },
   { timestamps: true }
 );

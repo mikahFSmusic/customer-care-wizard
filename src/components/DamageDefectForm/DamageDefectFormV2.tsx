@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -49,32 +49,60 @@ const DDForm = (props: any) => {
     setItemAmountElement(<div></div>);
     setFileCaseElements([<div></div>]);
     setReplacementOrderElement(<div></div>);
-    setShowLevelOnePreview(false);
-    setShowAllPreviews(false);
   };
 
-  const [imageOneURL, setImageOneURL] = useState<string>();
-  const [imageTwoURL, setImageTwoURL] = useState<string>();
-  const [imageThreeURL, setImageThreeURL] = useState<string>();
-  const [showLevelOnePreview, setShowLevelOnePreview] = useState(false);
-  const [showAllPreviews, setShowAllPreviews] = useState(false);
+  // Image Upload
+  const [imageURLs, setImageURLs] = useState<Array<string>>();
+  useEffect(() => {
+    imageURLs?.forEach((url) => {
+      setImageUploadElements((prevElements) => [
+        ...prevElements,
+        <img width="80px" height="80px" src={url} alt="damage" />,
+      ]);
+    });
+  }, [imageURLs]);
 
-  // sets image urls on image upload
-  const handleImageUpload = (event: ChangeEvent<any>) => {
-    const el = event.target as HTMLFormElement;
-    const id = el.getAttribute("id");
-    console.log(id);
-    const url = URL.createObjectURL(el.files[0]);
-    console.log(url);
-    if (id === "image1") {
-      console.log("image1");
-      setImageOneURL(url);
-    } else if (id === "image2") {
-      console.log("image2");
-      setImageTwoURL(url);
-    } else if (id === "image3") {
-      console.log("image3");
-      setImageThreeURL(url);
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const url =
+      "https://images.ctfassets.net/0jkr5d02o14t/4Tsq7upvRUHBdW4HwzeNEy/7f140b351543035dae54015d634c0df4/placeholder.png?h=250";
+    const el = event.target as HTMLInputElement;
+    const newURL = el.files ? el.files : url;
+    const images = await handleFileUpload(newURL);
+    let urls: Array<string> = [];
+    images.forEach((image: any) => {
+      urls.push(image["location"]);
+    });
+    setImageURLs(urls);
+  };
+
+  const handleFileUpload = async (files: any) => {
+    const imageForm = new FormData();
+
+    // appends image data for submission to S3 bucket
+    for (let i = 0; i < files.length; i++) {
+      imageForm.append("images", files[i]);
+    }
+
+    const url = `http://localhost:4000/upload-damage-image`;
+
+    const config = {
+      method: "POST",
+      body: imageForm,
+    };
+    try {
+      const req = await fetch(url, config);
+      // console.log(req);
+      if (req.ok) {
+        const res = await req.json();
+        // console.log(res);
+        if (res.success) {
+          return res.images;
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -86,8 +114,7 @@ const DDForm = (props: any) => {
     setLevel(value);
     if (value === "Level 1") {
       setLevelHeadElement(<h2>Level One</h2>);
-      setImageUploadElements([<ImageUpload />]);
-      setShowLevelOnePreview(true);
+      setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setOfferDiscountElement(
         <OfferDiscount
           name="offerDiscount"
@@ -97,8 +124,7 @@ const DDForm = (props: any) => {
       );
     } else if (value === "Level 2") {
       setLevelHeadElement(<h2>Level Two</h2>);
-      setImageUploadElements([<ImageUpload />]);
-      setShowAllPreviews(true);
+      setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setOfferDiscountElement(
         <OfferDiscount
           name="offerDiscount"
@@ -108,8 +134,7 @@ const DDForm = (props: any) => {
       );
     } else if (value === "Level 3") {
       setLevelHeadElement(<h2>Level Three</h2>);
-      setImageUploadElements([<ImageUpload />]);
-      setShowAllPreviews(true);
+      setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setItemAmountElement(
         <ItemAmount
           name="itemAmount"
@@ -210,15 +235,27 @@ const DDForm = (props: any) => {
     setShow(true);
   };
 
-  const handleReview = (formData: any) => {
+  const handleReview = (formData: FormData) => {
     setData(formData);
     handleShow();
   };
 
   const onSubmit = (formData: any): void => {
-    console.log(formData);
-
-    addDamagedDefect(formData)
+    console.log("Pre-append")
+    console.log((formData));
+    let outputForm = new FormData
+    for (let key in formData) {
+      console.log(key)
+      outputForm.append(key, formData[key])
+    }
+    outputForm.append("images", JSON.stringify(imageURLs))
+    // stores form to Mongo
+    let outputData:any = {}
+    for (const [key, value] of outputForm) {
+      console.log("key: " + key + ", value: " + value  )
+      outputData[key] = value
+    }
+    addDamagedDefect(outputData)
       .then(({ status }) => {
         if (status !== 201) {
           throw new Error("Error saving data");
@@ -234,7 +271,7 @@ const DDForm = (props: any) => {
 
   const formStyles = {
     borderRadius: "10px",
-    padding: "10px"
+    padding: "10px",
   };
 
   return (

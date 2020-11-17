@@ -12,5 +12,5 @@ export interface IDamagedDefect extends Document {
   itemAmount: string;
   damageDescription: string;
   actionNeeded: string;
-  images: Array<Express.Multer.File>;
+  images: Array<string>;
 }

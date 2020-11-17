@@ -36,7 +36,7 @@ const DamagedDefectSchema = new mongoose_1.Schema({
         type: String,
     },
     images: {
-        type: [Object],
+        type: [String],
     }
 }, { timestamps: true });
 exports.default = mongoose_1.model("damaged_defect", DamagedDefectSchema);

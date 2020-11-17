@@ -50,7 +50,7 @@ const DamagedDefectSchema = new Schema(
     },
 
     images: {
-      type: [Object],
+      type: [String],
     }
   },
   { timestamps: true }

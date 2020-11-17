@@ -5,16 +5,14 @@ interface IDamagedDefect {
   vendor: string
   skuNumber: string
   damageLevel: string
-  offerDiscount: string
+  offerDiscount?: string
   refundAmount?: string
   narvarReturn?: string
   itemAmount?: string
   damageDescription?: string
   actionNeeded?: string
   createdAt?: string
-  image1?: Buffer
-  image2?: Buffer
-  image3?: Buffer
+  images?: Array<string>
 }
 
 interface DamagedDefectProps {

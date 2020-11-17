@@ -11,11 +11,6 @@ type SubmitConfirmationProps = {
   data: any
 }
 
-type ElementObject = {
-  key: string,
-  value: string
-}
-
 const getNewKey = (key:string) => {
   switch(key) {
     case "purchaseReceived":

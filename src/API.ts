@@ -18,9 +18,7 @@ export const addDamagedDefect = async (
       itemAmount: formData.itemAmount,
       damageDescription: formData.damageDescription,
       actionNeeded: formData.actionNeeded,
-      image1: formData.image1,
-      image2: formData.image2,
-      image3: formData.image3,
+      images: formData.images
     };
     const saveDamagedDefect: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl + "/submit-damaged-defect",
@@ -63,9 +61,7 @@ export const updateDamagedDefect = async (
       | "itemAmount"
       | "damageDescription"
       | "actionNeeded"
-      | "image1"
-      | "image2"
-      | "image3"
+      | "images"
     > = {
       purchaseReceived: formData.purchaseReceived,
       orderNumber: formData.orderNumber,
@@ -78,9 +74,7 @@ export const updateDamagedDefect = async (
       itemAmount: formData.itemAmount,
       damageDescription: formData.damageDescription,
       actionNeeded: formData.actionNeeded,
-      image1: formData.image1,
-      image2: formData.image2,
-      image3: formData.image3,
+      images: formData.images
     };
     const updatedDamagedDefect: AxiosResponse<ApiDataType> = await axios.put(
       `${baseUrl}/update-damaged-defect/${damagedDefect._id}`,

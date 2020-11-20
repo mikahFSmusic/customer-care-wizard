@@ -243,7 +243,7 @@ const DDForm = (props: any) => {
   const onSubmit = (formData: any): void => {
     console.log("Pre-append")
     console.log((formData));
-    let outputForm = new FormData
+    let outputForm = new FormData()
     for (let key in formData) {
       console.log(key)
       outputForm.append(key, formData[key])

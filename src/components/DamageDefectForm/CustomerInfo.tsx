@@ -5,63 +5,37 @@ import { CustomerCard } from "./CustomerComponents/CustomerCard";
 
 // API Call to Kustomer for list of all customers
 const kustomerAPIKey = process.env.REACT_APP_KUSTOMER_API_KEY;
-const xhr = new XMLHttpRequest();
-xhr.responseType = "json"
 
-let headers = new Headers({
-  'authorization': `Bearer ${kustomerAPIKey}`,
-  'content-type': 'application/json'
-})
+const baseURL: string = "https://api.kustomerapp.com/v1/customers/search";
+const proxyURL: string = "https://cors-anywhere.herokuapp.com/";
 
-let initObject = {
-  method: 'GET', headers: headers
-}
+const fetchCustomers = async (name: string) => {
+  let headers = new Headers({
+    Authorization: `Bearer ${kustomerAPIKey}`,
+    "Content-Type": "application/json",
+  });
 
-const baseURL: string = "https://api.kustomerapp.com"
-const proxyURL: string = "https://cors-anywhere.herokuapp.com/"
-const pageSize: number= 1000
+  let raw = JSON.stringify({
+    "and": [{ "customer_name": { "contains": name } }],
+    "sort": [{ "customer_updated_at": "asc" }],
+    "queryContext": "customer",
+    "or": [],
+  });
 
-const fetchCustomers = async (page: number) => {
+  let initObject = {
+    method: "POST",
+    headers: headers,
+    body: raw,
+  };
+
   try {
-    const response = await fetch(
-      `${proxyURL}${baseURL}/v1/customers?page=${page}&pageSize=${pageSize}`,
-      initObject
-    )
+    const response = await fetch(`${proxyURL}${baseURL}`, initObject);
     const data = await response.json();
-    console.log(data)
-    return data
+    return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
-
-// const getCustomers = async (page: number) => {
-//   let proxyUrl: string = "https://cors-anywhere.herokuapp.com/";
-//   let requestAddition: string = "/v1/customers?page=1&pageSize=1000"
-//   let requestUrl: string = "https://api.kustomerapp.com";
-
-//   try {
-//     xhr.open("GET", proxyUrl + requestUrl + requestAddition, true);
-//     xhr.setRequestHeader("authorization", `Bearer ${kustomerAPIKey}`);
-//     xhr.setRequestHeader("content-type", "application/json");
-//     xhr.onreadystatechange = () => {
-//       if (xhr.readyState === XMLHttpRequest.DONE) {
-//         let status = xhr.status;
-//         if (status === 0 || (status >= 200 && status < 400)) {
-//           let response = xhr.response;
-//           let resJSON = JSON.parse(JSON.stringify(response));
-//           allCustomers = resJSON.data;
-//           nextUrl = resJSON.links.next
-//           numPages = resJSON.meta.totalPages
-//           return resJSON.data
-//         }
-//       }
-//     };
-//     xhr.send();
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
+};
 
 // Fuse fuzzy search
 const searchCustomers = (customers: any, pattern: string) => {
@@ -74,47 +48,30 @@ const searchCustomers = (customers: any, pattern: string) => {
 
 // COMPONENT
 export const CustomerInfo = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [validCustomers, setValidCustomers] = useState<Array<Object>>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [customers, setCustomers] = useState<any[]>([])
-  const [numPages, setNumPages] = useState(1)
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [customers, setCustomers] = useState<Array<Object>>();
 
-  console.log(numPages)
-
-  useEffect(() => {
-    setLoading(true)
-    fetchCustomers(numPages).then(data => {
-      setNumPages(data.meta.totalPages)
-    })
-    // while (currentPage <= numPages) {
-
-    // }
-    setLoading(false)
-  }, [])
+  console.log("new render")
 
   useEffect(() => {
-    let currentPage = 1
-    setLoading(true)
-    while (currentPage <= numPages) {
-      fetchCustomers(currentPage).then(data => {
-        setCustomers(prevCustomers => [...prevCustomers, data.data])
-      })
-      currentPage++;
+    const doFetch = async (searchValue:string) => {
+      setLoading(true)
+      const data = await fetchCustomers(searchValue)
+      setCustomers(data.data)
+      setLoading(false)
     }
-    setLoading(false)
-  }, [numPages])
+    doFetch(searchValue)
+  }, [searchValue])
 
-  const handleSearchChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault()
+  console.log(customers)
+
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const el = event.target as HTMLInputElement;
     const value = el.value;
-    setSearchValue(value);
-    if (customers !== undefined) {
-      console.log("customer data loaded");
-      setValidCustomers(searchCustomers(customers, value));
-    } else {
-      console.log("loading customer data");
+    if (value.length > 2) {
+      setSearchValue(value)
     }
   };
 
@@ -124,7 +81,7 @@ export const CustomerInfo = () => {
     margin: "10px",
     height: "95%",
     borderRadius: "10px",
-    padding: "10px"
+    padding: "10px",
   };
 
   const resultsStyles = {
@@ -143,7 +100,6 @@ export const CustomerInfo = () => {
         >
           <MDBIcon icon="search"></MDBIcon>
           <input
-            value={searchValue}
             className="form-control form-control-lg ml-3 w-75"
             type="text"
             placeholder="Search"
@@ -152,11 +108,11 @@ export const CustomerInfo = () => {
           ></input>
         </MDBFormInline>
         <div style={resultsStyles}>
-          {customers
-            ? validCustomers?.map((customer: any) => (
-                <CustomerCard key={customer.item.id} customerData={customer} />
+          {!loading
+            ? customers?.map((customer: any) => (
+              <CustomerCard key={customer.id} customerData={customer} />
               ))
-            : "Loading customer information! Try searching again in a couple of seconds"}
+            : "Loading..."}
         </div>
       </MDBCol>
     </div>

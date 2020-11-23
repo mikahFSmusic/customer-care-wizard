@@ -9,9 +9,9 @@ type CustomerCardProps = {
 export const CustomerCard = (props: CustomerCardProps) => {
   const [backgroundColor, setBackgroundColor] = useState<string>("white");
 
-  const name = props.customerData.item.attributes.displayName;
-  const emails = props.customerData.item.attributes.emails[0];
-  const phones = props.customerData.item.attributes.phones[0];
+  const name = props.customerData.attributes.displayName;
+  const emails = props.customerData.attributes.emails[0];
+  const phones = props.customerData.attributes.phones[0];
   let email = "";
   let phone = "";
   if (emails !== undefined) {

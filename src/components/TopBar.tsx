@@ -3,10 +3,9 @@ import React from "react";
 const TopBar = () => {
   const topBarStyle = {
     top: 0,
-    left: "5rem",
-    height: "50px",
+    height: "70px",
     width: "100%",
-    backgroundColor: "#3250a2",
+    backgroundColor: "black",
     color: "white",
     justifyContent: "center",
     alignContent: "center",
@@ -15,7 +14,7 @@ const TopBar = () => {
   };
   return (
     <div className="Top-bar" style={topBarStyle}>
-      <h2>Maisonette Customer Care</h2>
+      <h1 style={{alignSelf:"center"}}>Concierge</h1>
     </div>
   );
 };

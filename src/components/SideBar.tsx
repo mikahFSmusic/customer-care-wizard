@@ -10,7 +10,7 @@ const SideBar = () => {
     left: 0,
     width: "5rem",
     height: "100vh",
-    backgroundColor: "#3250a2",
+    backgroundColor: "black",
     borderRight: "1px solid white",
     alignContent: "center",
     display: "flex",

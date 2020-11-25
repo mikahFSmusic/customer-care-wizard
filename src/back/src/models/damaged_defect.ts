@@ -5,8 +5,8 @@ import { MulterError } from "multer";
 
 const DamagedDefectSchema = new Schema(
   {
-    purchaseReceived: {
-      type: String,
+    customerData: {
+      type: Object
     },
 
     orderNumber: {

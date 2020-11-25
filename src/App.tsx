@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 function App() {
   const appStyle = {
     padding: 0,
+    top:'70px',
     display: 'flex',
     justifyContent: 'center',
     alignContent: 'center',
@@ -18,7 +19,7 @@ function App() {
 
   const appContainerStyle = {
     left: '5rem',
-    top: '50px',
+    top: '70px',
     height: '100%',
     bottom: 0,
     right: 0,

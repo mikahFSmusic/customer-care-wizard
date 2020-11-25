@@ -12,13 +12,23 @@ import NarvarReturn from "./FormComponents/NarvarReturn";
 import SubmitConfirmation from "./SubmitConfirmation";
 import { addDamagedDefect } from "./../../API";
 import { ImageUpload } from "./FormComponents/ImageUpload";
+import { CustomerExplore } from '../CustomerExplore';
+import { MDBCol } from 'mdbreact';
 
 const DDForm = (props: any) => {
+  // Damage Level
   let level: string = "";
+  const setLevel = (newLevel: string) => {
+    level = newLevel;
+  };
+
+  /* STATE HOOKS */
   const [levelHeadElement, setLevelHeadElement] = useState<JSX.Element>();
+  const [customerData, setCustomerData] = useState<Object>();
   const [imageUploadElements, setImageUploadElements] = useState<
     Array<JSX.Element>
   >([]);
+
   const [offerDiscountElement, setOfferDiscountElement] = useState<
     JSX.Element
   >();
@@ -37,10 +47,6 @@ const DDForm = (props: any) => {
   const [data, setData] = useState({});
   const { register, handleSubmit, errors } = useForm();
 
-  const setLevel = (newLevel: string) => {
-    level = newLevel;
-  };
-
   // Resets components on level change
   const clearDynamicComponents = () => {
     setOfferDiscountElement(<div></div>);
@@ -50,6 +56,12 @@ const DDForm = (props: any) => {
     setFileCaseElements([<div></div>]);
     setReplacementOrderElement(<div></div>);
   };
+
+  // TODO: set customer data type
+  const handleCustomerClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, customerData: any) => {
+    console.log(customerData)
+    setCustomerData(customerData)
+  }
 
   // Image Upload
   const [imageURLs, setImageURLs] = useState<Array<string>>();
@@ -85,6 +97,7 @@ const DDForm = (props: any) => {
       imageForm.append("images", files[i]);
     }
 
+    //TODO: this needs to change for live version (won't work online)
     const url = `http://localhost:4000/upload-damage-image`;
 
     const config = {
@@ -241,19 +254,20 @@ const DDForm = (props: any) => {
   };
 
   const onSubmit = (formData: any): void => {
-    console.log("Pre-append")
-    console.log((formData));
-    let outputForm = new FormData()
+    console.log("Pre-append");
+    console.log(formData);
+    let outputForm = new FormData();
     for (let key in formData) {
-      console.log(key)
-      outputForm.append(key, formData[key])
+      console.log(key);
+      outputForm.append(key, formData[key]);
     }
-    outputForm.append("images", JSON.stringify(imageURLs))
+    outputForm.append("customerData", JSON.stringify(customerData));
+    outputForm.append("images", JSON.stringify(imageURLs));
     // stores form to Mongo
-    let outputData:any = {}
+    let outputData: any = {};
     for (const [key, value] of outputForm) {
-      console.log("key: " + key + ", value: " + value  )
-      outputData[key] = value
+      console.log("key: " + key + ", value: " + value);
+      outputData[key] = value;
     }
     addDamagedDefect(outputData)
       .then(({ status }) => {
@@ -271,7 +285,7 @@ const DDForm = (props: any) => {
 
   const formStyles = {
     borderRadius: "10px",
-    padding: "10px",
+    padding: "60px",
   };
 
   return (
@@ -286,96 +300,89 @@ const DDForm = (props: any) => {
       >
         <h2>Damaged/Defective Form</h2>
         <br />
-        {/* Purchase Received */}
-        <Form.Group>
-          <Form.Label>Purchase Received</Form.Label>
-          <Form.Control
-            name="purchaseReceived"
-            as="select"
-            ref={register({ required: true })}
-          >
-            <option value="">Received?</option>
-            <option>Yes</option>
-            <option>No</option>
-          </Form.Control>
-          {errors.purchaseReceived && "receipt status is required"}
-        </Form.Group>
+        {/* Customer Information  */}
+        <MDBCol style={{padding: '10px', justifyContent: 'center'}}>
+          <Form.Group>
+            <Form.Label>Customer Information</Form.Label>
+            <CustomerExplore onClick={handleCustomerClick} />
+          </Form.Group>
 
-        {/* Order # */}
-        <Form.Group>
-          <Form.Label>Order #</Form.Label>
-          <Form.Control
-            name="orderNumber"
-            placeholder="Order #"
-            ref={register({ required: true })}
-          ></Form.Control>
-          {errors.orderNumber && "Order # is required"}
-        </Form.Group>
+          {/* Order # */}
+          <Form.Group>
+            <Form.Label>Order #</Form.Label>
+            <Form.Control
+              name="orderNumber"
+              placeholder="Order #"
+              ref={register({ required: true })}
+            ></Form.Control>
+            {errors.orderNumber && "Order # is required"}
+          </Form.Group>
 
-        {/* Vendor */}
-        <Form.Group>
-          <Form.Label>Vendor</Form.Label>
-          <Form.Control
-            name="vendor"
-            as="select"
-            defaultValue="Choose Vendor..."
-            ref={register({ required: true })}
-          >
-            <option></option>
-            {vendorList.map((vendor) => (
-              <option key={vendor}>{vendor}</option>
-            ))}
-          </Form.Control>
-          {errors.vendor && "Vendor required"}
-        </Form.Group>
+          {/* Vendor */}
+          <Form.Group>
+            <Form.Label>Vendor</Form.Label>
+            <Form.Control
+              name="vendor"
+              as="select"
+              defaultValue="Choose Vendor..."
+              ref={register({ required: true })}
+            >
+              <option></option>
+              {vendorList.map((vendor) => (
+                <option key={vendor}>{vendor}</option>
+              ))}
+            </Form.Control>
+            {errors.vendor && "Vendor required"}
+          </Form.Group>
 
-        {/* SKU Number */}
-        <Form.Group>
-          <Form.Label>SKU #</Form.Label>
-          <Form.Control
-            name="skuNumber"
-            placeholder="SKU #"
-            ref={register({ required: true })}
-          ></Form.Control>
-          {errors.skuNumber && "SKU # is required"}
-        </Form.Group>
+          {/* SKU Number */}
+          <Form.Group>
+            <Form.Label>SKU #</Form.Label>
+            <Form.Control
+              name="skuNumber"
+              placeholder="SKU #"
+              ref={register({ required: true })}
+            ></Form.Control>
+            {errors.skuNumber && "SKU # is required"}
+          </Form.Group>
 
-        {/* Damage Level */}
-        <Form.Group>
-          <Form.Label>Damage Level</Form.Label>
-          <Form.Control
-            name="damageLevel"
-            as="select"
-            defaultValue="Damage Level..."
-            ref={register({ required: true })}
-            onChange={handleLevelChange}
-          >
-            <option></option>
-            {damageLevels.map((level) => (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </Form.Control>
-          {errors.damageLevel && "Please select damage level"}
-        </Form.Group>
+          {/* Damage Level */}
+          <Form.Group>
+            <Form.Label>Damage Level</Form.Label>
+            <Form.Control
+              name="damageLevel"
+              as="select"
+              defaultValue="Damage Level..."
+              ref={register({ required: true })}
+              onChange={handleLevelChange}
+            >
+              <option></option>
+              {damageLevels.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </Form.Control>
+            {errors.damageLevel && "Please select damage level"}
+          </Form.Group>
 
-        {/* Level Paths */}
-        {levelHeadElement}
-        <Form.Group>{imageUploadElements}</Form.Group>
-        <Form.Group>{offerDiscountElement}</Form.Group>
-        <Form.Group>{narvarReturnElement}</Form.Group>
-        <Form.Group>{refundAmountElement}</Form.Group>
-        <Form.Group>{itemAmountElement}</Form.Group>
-        <Form.Group>{fileCaseElements}</Form.Group>
-        <Form.Group>{replacementOrderElement}</Form.Group>
-        <Button onClick={handleSubmit(handleReview)}>Review</Button>
-        <SubmitConfirmation
-          data={data}
-          show={show}
-          onHide={handleClose}
-          onSubmit={handleSubmit(onSubmit)}
-        />
+          {/* Level Paths */}
+          {levelHeadElement}
+          <Form.Group>{imageUploadElements}</Form.Group>
+          <Form.Group>{offerDiscountElement}</Form.Group>
+          <Form.Group>{narvarReturnElement}</Form.Group>
+          <Form.Group>{refundAmountElement}</Form.Group>
+          <Form.Group>{itemAmountElement}</Form.Group>
+          <Form.Group>{fileCaseElements}</Form.Group>
+          <Form.Group>{replacementOrderElement}</Form.Group>
+          <Button onClick={handleSubmit(handleReview)}>Review</Button>
+          <SubmitConfirmation
+            data={data}
+            show={show}
+            onHide={handleClose}
+            onSubmit={handleSubmit(onSubmit)}
+          />
+        </MDBCol>
       </Form>
     </div>
   );

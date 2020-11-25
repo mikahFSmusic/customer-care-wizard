@@ -1,6 +1,6 @@
 interface IDamagedDefect {
   _id: string
-  purchaseReceived: string
+  customerData: Object
   orderNumber: string
   vendor: string
   skuNumber: string

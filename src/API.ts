@@ -7,7 +7,7 @@ export const addDamagedDefect = async (
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const damagedDefect: Omit<IDamagedDefect, "_id"> = {
-      purchaseReceived: formData.purchaseReceived,
+      customerData: formData.customerData,
       orderNumber: formData.orderNumber,
       vendor: formData.vendor,
       skuNumber: formData.skuNumber,
@@ -50,7 +50,7 @@ export const updateDamagedDefect = async (
   try {
     const damagedDefectUpdate: Pick<
       IDamagedDefect,
-      | "purchaseReceived"
+        "customerData"
       | "orderNumber"
       | "vendor"
       | "skuNumber"
@@ -63,7 +63,7 @@ export const updateDamagedDefect = async (
       | "actionNeeded"
       | "images"
     > = {
-      purchaseReceived: formData.purchaseReceived,
+      customerData: formData.customerData,
       orderNumber: formData.orderNumber,
       vendor: formData.vendor,
       skuNumber: formData.skuNumber,

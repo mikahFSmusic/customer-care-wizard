@@ -13,8 +13,8 @@ type SubmitConfirmationProps = {
 
 const getNewKey = (key:string) => {
   switch(key) {
-    case "purchaseReceived":
-      return "Purchase Received?: "
+    case "customerData":
+      return "Customer: "
     case "orderNumber":
       return "Order Number: "
     case "vendor":
@@ -59,6 +59,7 @@ const SubmitConfirmation = (props: SubmitConfirmationProps) => {
         let newKey = getNewKey(thisKey);
         if (typeof entry[1] === "string") {
           outputEntries[i] = [newKey, entry[1]];
+        // TODO: Conditional here for customer data to format name
         } else if (typeof entry[1] == "object" && entry[1] !== null) {
           const el = entry[1] as HTMLFormElement;
           const url = URL.createObjectURL(el[0]);

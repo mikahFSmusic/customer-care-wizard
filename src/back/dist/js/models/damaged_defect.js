@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const DamagedDefectSchema = new mongoose_1.Schema({
-    purchaseReceived: {
-        type: String,
+    customerData: {
+        type: Object
     },
     orderNumber: {
         type: String,

@@ -3,7 +3,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 type CustomerCardProps = {
-  customerData: any;
+  customerData: any
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, customerData: any) => void
 };
 
 export const CustomerCard = (props: CustomerCardProps) => {
@@ -39,9 +40,8 @@ export const CustomerCard = (props: CustomerCardProps) => {
   };
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log("Clicked");
-    console.log(props.customerData);
-  };
+    props.onClick(event, props.customerData)
+  }
 
   return (
     <div

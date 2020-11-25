@@ -69,7 +69,7 @@ const addDamagedDefect = (req, res) => __awaiter(void 0, void 0, void 0, functio
         console.log(body);
         console.log(file);
         const damagedDefect = new damaged_defect_1.default({
-            purchaseReceived: body.purchaseReceived,
+            customerData: body.customerData,
             orderNumber: body.orderNumber,
             vendor: body.vendor,
             skuNumber: body.skuNumber,

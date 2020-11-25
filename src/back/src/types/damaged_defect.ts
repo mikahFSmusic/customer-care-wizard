@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 
 export interface IDamagedDefect extends Document {
-  purchaseReceived: string;
+  customerData: Object;
   orderNumber: string;
   vendor: string;
   skuNumber: string;

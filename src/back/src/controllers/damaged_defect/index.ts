@@ -58,7 +58,7 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
   try {
     const body = req.body as Pick<
       IDamagedDefect,
-      | "purchaseReceived"
+        "customerData"
       | "orderNumber"
       | "vendor"
       | "skuNumber"
@@ -75,7 +75,7 @@ const addDamagedDefect = async (req: Request, res: Response): Promise<void> => {
     console.log(body);
     console.log(file);
     const damagedDefect: IDamagedDefect = new DamagedDefectSchema({
-      purchaseReceived: body.purchaseReceived,
+      customerData: body.customerData,
       orderNumber: body.orderNumber,
       vendor: body.vendor,
       skuNumber: body.skuNumber,

@@ -1,5 +1,5 @@
 import React from "react";
-import DamageDefectFormV2 from "./DamageDefectForm/DamageDefectFormV2";
+import DamageDefectFormV2 from "./DamageDefectForm/DamageDefectForm";
 import Col from "react-bootstrap/Col";
 
 const FormContainer = () => {

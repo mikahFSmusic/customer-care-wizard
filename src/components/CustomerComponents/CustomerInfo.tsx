@@ -19,9 +19,13 @@ export const CustomerInfo = (props:CustomerInfoProps) => {
     phone = phones.phone;
   }
 
+  const customerInfoStyles = {
+    margin: '5px',
+    padding: "10px"
+  }
 
   return (
-    <div>
+    <div style={customerInfoStyles} className="z-depth-1">
       <h4>Customer: {name}</h4>
       <h5>Email: {email}</h5>
       <h5>Phone: {phone}</h5>

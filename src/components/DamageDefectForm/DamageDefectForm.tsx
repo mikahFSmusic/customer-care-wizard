@@ -10,7 +10,7 @@ import ActionNeeded from "./FormComponents/FileCase/ActionNeeded";
 import ReplacementOrder from "./FormComponents/ReplacementOrder";
 import NarvarReturn from "./FormComponents/NarvarReturn";
 import SubmitConfirmation from "./SubmitConfirmation";
-import { addDamagedDefect } from "./../../API";
+import { addDamagedDefect } from "../../API";
 import { ImageUpload } from "./FormComponents/ImageUpload";
 import { CustomerExplore } from '../CustomerExplore';
 import { MDBCol } from 'mdbreact';
@@ -298,8 +298,9 @@ const DDForm = (props: any) => {
         style={formStyles}
         className="z-depth-1"
       >
-        <h2>Damaged/Defective Form</h2>
+        <h2>Damaged/Defective Item Form</h2>
         <br />
+
         {/* Customer Information  */}
         <MDBCol style={{padding: '10px', justifyContent: 'center'}}>
           <Form.Group>

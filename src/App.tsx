@@ -33,7 +33,7 @@ function App() {
   return (
     <Router>
       <div className="App" style={appStyle}>
-        <TopBar />
+        {/* <TopBar /> */}
         <SideBar />
         <div className="App-container" style={appContainerStyle}>
           <Switch>

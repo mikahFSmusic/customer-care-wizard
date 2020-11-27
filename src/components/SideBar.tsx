@@ -3,6 +3,7 @@ import FormIcon from "../assets/images/dynamic_form-white-48dp.svg";
 import DashIcon from "../assets/images/dashboard-white-48dp.svg";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { MDBNav, MDBNavItem, MDBNavLink, MDBTooltip } from "mdbreact";
 
 const SideBar = () => {
   const sideBarStyle = {
@@ -16,34 +17,53 @@ const SideBar = () => {
     display: "flex",
   };
 
+  const sideBarIconContainerStyle = {
+    height: "33%",
+    justifyContent: "center",
+    alignContent: "center",
+    paddingTop: "15px",
+  };
+
   let sideBarIconStyle = {
-    width: "3rem",
-    height: "3rem",
+    width: "2rem",
+    height: "2rem",
     alignSelf: "center",
+  };
+
+  const navStyle = {
+    justifyContent: "center",
   };
 
   return (
     <div className="Side-bar" style={sideBarStyle}>
-      <Col
-        style={{
-          justifyContent: "center",
-          height: "100%",
-          alignContent: "center",
-        }}
+      <div
+        className="Side-bar-icon-container"
+        style={sideBarIconContainerStyle}
       >
-        <br />
-        <div className="Side-bar-icon">
-          <Link to="/">
-            <img src={DashIcon} style={sideBarIconStyle} alt="dashboard"></img>
-          </Link>
-        </div>
-        <br />
-        <div className="Side-bar-icon">
-          <Link to="/damage-defect-form">
-            <img src={FormIcon} style={sideBarIconStyle} alt="forms"></img>
-          </Link>
-        </div>
-      </Col>
+        <MDBNav style={navStyle}>
+          <MDBNavItem>
+            <MDBTooltip placement="right">
+              <MDBNavLink active to="/">
+                <img
+                  src={DashIcon}
+                  style={sideBarIconStyle}
+                  alt="dashboard"
+                ></img>
+              </MDBNavLink>
+              <div style={{backgroundColor:"white", color:"black"}}>Dashboard</div>
+            </MDBTooltip>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBTooltip placement="right">
+              <MDBNavLink to="/damage-defect-form">
+                <img src={FormIcon} style={sideBarIconStyle} alt="forms"></img>
+              </MDBNavLink>
+              <div style={{backgroundColor:"white", color:"black"}}>Forms</div>
+            </MDBTooltip>
+          </MDBNavItem>
+
+        </MDBNav>
+      </div>
     </div>
   );
 };

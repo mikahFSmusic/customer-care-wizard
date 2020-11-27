@@ -122,8 +122,9 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
     overflow: "hidden",
   };
 
+
   return (
-    <div style={customerInfoStyle} className="z-depth-0-5">
+    <div style={customerInfoStyle}>
       <MDBCol md="12">
         {headerSwitch()}
         <div>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getAllDamagedDefects } from "../../API";
+import React, { useState } from "react";
+import { getAllDamagedDefects, sendEmail } from "../../API";
 import { VendorChart } from './VendorChart'
 
 type VendorInfo = {
@@ -76,6 +76,12 @@ const Dashboard = () => {
     doFetch();
   };
 
+  const doSendEmail = async (event: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    const email = await sendEmail();
+    let jsonData = JSON.parse(JSON.stringify(email.data));
+    console.log(jsonData);
+  }
+
   return (
     <div>
       {/* <button onClick={handleClick}>Get DD Forms</button>
@@ -86,6 +92,7 @@ const Dashboard = () => {
           </h5>
         ))}
       </div> */}
+      <button onClick={doSendEmail}> Send Email! </button>
       <VendorChart />
 
     </div>

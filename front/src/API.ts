@@ -98,3 +98,14 @@ export const deleteDamagedDefect = async (
     throw new Error(error);
   }
 };
+
+export const sendEmail = async () => {
+  try {
+    const sentEmail: AxiosResponse<ApiDataType> = await axios.get(
+      `${baseUrl}/send-dd-emails/`
+      )
+    return sentEmail
+  } catch (error) {
+    throw new Error(error)
+  }
+}

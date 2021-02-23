@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { MDBCol, MDBIcon, MDBBtn } from "mdbreact";
+import React, { FormEvent, useEffect, useState, useRef, MutableRefObject } from "react";
+import { MDBBtn, MDBInput } from "mdbreact";
 import { CustomerInfo } from "./CustomerComponents/CustomerInfo";
 import { CustomerSearchResults } from "./CustomerComponents/CustomerSearchResults";
 import { fetchCustomers } from "../KustomerAPI";
 
 type CustomerExploreProps = {
-  customerData?: Object;
   onClick: (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     customerData: any
@@ -15,7 +14,7 @@ type CustomerExploreProps = {
 // COMPONENT
 export const CustomerExplore = (props: CustomerExploreProps) => {
   // State Hooks
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [customers, setCustomers] = useState<Array<Object>>();
   const [showSearchBar, setShowSearchBar] = useState<boolean>(true);
@@ -25,19 +24,27 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
   const [customerData, setCustomerData] = useState();
 
   // Effect Hooks
+  const prevSearchValueRef: MutableRefObject<string> = useRef("");
   useEffect(() => {
     setShowCustomer(false);
     setShowResults(true);
     const doFetch = async (searchValue: string) => {
-      setLoading(true);
-      const data = await fetchCustomers(searchValue);
-      setCustomers(data.data);
-      setLoading(false);
+      if (searchValue.length > prevSearchValue.length && searchValue !== prevSearchValue) {
+        setLoading(true);
+        const data = await fetchCustomers(searchValue);
+        if (data) {
+          setCustomers(data.data);
+        }
+        setLoading(false);
+      }
     };
+    prevSearchValueRef.current = searchValue;
     doFetch(searchValue);
   }, [searchValue]);
-
-  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const prevSearchValue: string = prevSearchValueRef.current;
+  console.log("Search Value: " + searchValue);
+  console.log("Previous Search Value: " + prevSearchValue);
+  const handleSearchChange = (event: FormEvent<HTMLInputElement>) => {
     event.preventDefault();
     const el = event.target as HTMLInputElement;
     const value = el.value;
@@ -50,6 +57,7 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     customerData: any
   ) => {
+    console.log(customerData)
     setCustomerData(customerData);
     props.onClick(event, customerData);
     setShowSearchBar(false);
@@ -67,16 +75,16 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
   const headerSwitch = () => {
     if (showSearchBar) {
       return (
-        // TODO: (medium/high) change to form group to avoid nested form error
         <div className="form-inline">
-          <MDBIcon icon="search"></MDBIcon>
-          <input
-            className="form-control form-control-lg ml-3 w-75"
+          <MDBInput
+            className="form-control form-control-lg"
             type="text"
-            placeholder="Customer Search"
+            label="Find a customer"
             aria-label="Customer Search"
             onChange={handleSearchChange}
-          ></input>
+            icon="search"
+            style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+          ></MDBInput>
         </div>
       );
     } else if (showBackIcon && !showSearchBar) {
@@ -85,8 +93,6 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
           <MDBBtn flat color="primary" onClick={handleBackClick}>
             Change Customer
           </MDBBtn>
-          <br></br>
-          <br></br>
         </div>
       );
     }
@@ -94,7 +100,13 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
 
   const renderSwitch = () => {
     if (loading) {
-      return <div style={{alignSelf:'center'}}className="spinner-border" role="status"></div>;
+      return (
+        <div
+          style={{ alignSelf: "center" }}
+          className="spinner-border"
+          role="status"
+        ></div>
+      );
     }
     if (!loading && showResults) {
       return (
@@ -110,9 +122,6 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
 
   // Styles
   const customerInfoStyle = {
-    margin: "10px",
-    borderRadius: "10px",
-    padding: "10px",
     overflow: "scroll",
     maxHeight: "500px",
   };
@@ -122,15 +131,12 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
     overflow: "hidden",
   };
 
-
   return (
     <div style={customerInfoStyle}>
-      <MDBCol md="12">
         {headerSwitch()}
         <div>
           <div style={resultsStyles}>{renderSwitch()}</div>
         </div>
-      </MDBCol>
     </div>
   );
 };

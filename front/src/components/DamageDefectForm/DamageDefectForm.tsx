@@ -12,8 +12,9 @@ import NarvarReturn from "./FormComponents/NarvarReturn";
 import SubmitConfirmation from "./SubmitConfirmation";
 import { addDamagedDefect } from "../../API";
 import { ImageUpload } from "./FormComponents/ImageUpload";
-import { CustomerExplore } from '../CustomerExplore';
-import { MDBCol } from 'mdbreact';
+import { CustomerExplore } from "../CustomerExplore";
+import { MDBCol } from "mdbreact";
+import { fetchCustomerOrders } from "../../KustomerAPI";
 
 const DDForm = (props: any) => {
   // Damage Level
@@ -23,8 +24,6 @@ const DDForm = (props: any) => {
   };
 
   /* STATE HOOKS */
-  const [levelHeadElement, setLevelHeadElement] = useState<JSX.Element>();
-  const [customerData, setCustomerData] = useState<Object>();
   const [imageUploadElements, setImageUploadElements] = useState<
     Array<JSX.Element>
   >([]);
@@ -57,11 +56,31 @@ const DDForm = (props: any) => {
     setReplacementOrderElement(<div></div>);
   };
 
+  const [customerData, setCustomerData] = useState<Object>();
+  const [customerID, setCustomerID] = useState<string>("");
+  const [customerOrders, setCustomerOrders] = useState<Array<Object>>();
+
   // TODO: set customer data type
-  const handleCustomerClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, customerData: any) => {
-    console.log(customerData)
-    setCustomerData(customerData)
-  }
+  const handleCustomerClick = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    customerData: any
+  ) => {
+    setCustomerData(customerData);
+    setCustomerID(customerData.id);
+  };
+
+  useEffect(() => {
+    const doFetch = async (customerID: string) => {
+      if (customerID) {
+        const data = await fetchCustomerOrders(customerID);
+        if (data) {
+          console.log(data);
+          setCustomerOrders(data.data);
+        }
+      }
+    };
+    doFetch(customerID);
+  }, [customerID]);
 
   // Image Upload
   const [imageURLs, setImageURLs] = useState<Array<string>>();
@@ -98,6 +117,7 @@ const DDForm = (props: any) => {
     }
 
     //TODO: this needs to change for live version (won't work online)
+    // variable named server url to replace localhost would work
     const url = `http://localhost:4000/upload-damage-image`;
 
     const config = {
@@ -126,7 +146,6 @@ const DDForm = (props: any) => {
     clearDynamicComponents();
     setLevel(value);
     if (value === "Level 1") {
-      setLevelHeadElement(<h2>Level One</h2>);
       setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setOfferDiscountElement(
         <OfferDiscount
@@ -136,7 +155,6 @@ const DDForm = (props: any) => {
         />
       );
     } else if (value === "Level 2") {
-      setLevelHeadElement(<h2>Level Two</h2>);
       setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setOfferDiscountElement(
         <OfferDiscount
@@ -146,7 +164,6 @@ const DDForm = (props: any) => {
         />
       );
     } else if (value === "Level 3") {
-      setLevelHeadElement(<h2>Level Three</h2>);
       setImageUploadElements([<ImageUpload onChange={handleFileChange} />]);
       setItemAmountElement(
         <ItemAmount
@@ -279,13 +296,18 @@ const DDForm = (props: any) => {
   };
 
   const formContainerStyles = {
-    margin: "10px",
+    margin: "2px",
     height: "95%",
   };
 
   const formStyles = {
     borderRadius: "10px",
-    padding: "60px",
+    padding: "20px",
+  };
+
+  const orderStyles = {
+    border: "1px solid gray",
+    padding: "5px",
   };
 
   return (
@@ -298,19 +320,43 @@ const DDForm = (props: any) => {
         style={formStyles}
         className="z-depth-1"
       >
-        <h2>Damaged/Defective Item Form</h2>
-        <br />
-
         {/* Customer Information  */}
-        <MDBCol style={{padding: '10px', justifyContent: 'center'}}>
+        <MDBCol style={{ padding: "10px", justifyContent: "center" }}>
+          <h5>Damaged/Defective Item Form</h5>
+          {/* Customer search and base details */}
           <Form.Group>
-            <Form.Label>Customer Information</Form.Label>
             <CustomerExplore onClick={handleCustomerClick} />
           </Form.Group>
+          <hr
+            style={{ color: "#e5e5e5", backgroundColor: "#e5e5e5", height: 1 }}
+          />
+
+          {/* Customer Orders */}
+          {/* TODO: turn orders into a component */}
+          <Form.Group>
+            <div>
+              {customerOrders?.map((order: any) => (
+                <div style={orderStyles}>
+                  Order Number: {order.attributes.data.orderNumber}
+                  <br />
+                  Items:{" "}
+                  {order.attributes.data.lineItemDetails.map((item: any) => (
+                    <div>
+                      Item SKU: {item.sku} <br />
+                      Vendor SKU: {item.vendorSku} <br />
+                      Quantity Ordered: {item.quantityOrdered} <br />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </Form.Group>
+          <hr
+            style={{ color: "#e5e5e5", backgroundColor: "#e5e5e5", height: 1 }}
+          />
 
           {/* Order # */}
           <Form.Group>
-            <Form.Label>Order #</Form.Label>
             <Form.Control
               name="orderNumber"
               placeholder="Order #"
@@ -321,14 +367,16 @@ const DDForm = (props: any) => {
 
           {/* Vendor */}
           <Form.Group>
-            <Form.Label>Vendor</Form.Label>
             <Form.Control
               name="vendor"
               as="select"
-              defaultValue="Choose Vendor..."
+              placeholder="vendor"
+              defaultValue="Select vendor"
               ref={register({ required: true })}
             >
-              <option></option>
+              <option key="damage-level" value="Select vendor" disabled>
+                Select vendor
+              </option>
               {vendorList.map((vendor) => (
                 <option key={vendor}>{vendor}</option>
               ))}
@@ -338,7 +386,6 @@ const DDForm = (props: any) => {
 
           {/* SKU Number */}
           <Form.Group>
-            <Form.Label>SKU #</Form.Label>
             <Form.Control
               name="skuNumber"
               placeholder="SKU #"
@@ -346,18 +393,21 @@ const DDForm = (props: any) => {
             ></Form.Control>
             {errors.skuNumber && "SKU # is required"}
           </Form.Group>
-
+          <hr
+            style={{ color: "#e5e5e5", backgroundColor: "#e5e5e5", height: 1 }}
+          />
           {/* Damage Level */}
           <Form.Group>
-            <Form.Label>Damage Level</Form.Label>
             <Form.Control
               name="damageLevel"
               as="select"
-              defaultValue="Damage Level..."
+              defaultValue="Damage level"
               ref={register({ required: true })}
               onChange={handleLevelChange}
             >
-              <option></option>
+              <option key="damage-level" value="Damage level" disabled>
+                Damage level
+              </option>
               {damageLevels.map((level) => (
                 <option key={level} value={level}>
                   {level}
@@ -368,7 +418,6 @@ const DDForm = (props: any) => {
           </Form.Group>
 
           {/* Level Paths */}
-          {levelHeadElement}
           <Form.Group>{imageUploadElements}</Form.Group>
           <Form.Group>{offerDiscountElement}</Form.Group>
           <Form.Group>{narvarReturnElement}</Form.Group>

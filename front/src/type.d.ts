@@ -24,5 +24,3 @@ type ApiDataType = {
   status: string
   damaged_defect?: IDamagedDefect
 }
-
-declare module '@nivo/sunburst'

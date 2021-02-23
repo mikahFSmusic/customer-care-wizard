@@ -2,12 +2,13 @@
 
 // API Call to Kustomer for list of all customers
 const kustomerAPIKey = process.env.REACT_APP_KUSTOMER_API_KEY;
-const baseURL: string = "https://api.kustomerapp.com/v1/customers/search";
+const baseURL: string = "https://api.kustomerapp.com/v1/";
 const proxyURL: string = "https://cors-anywhere.herokuapp.com/";
 
 export const fetchCustomers = async (name: string) => {
+  const endpoint: string = "customers/search"
   let headers = new Headers({
-    Authorization: `Bearer ${kustomerAPIKey}`,
+    "Authorization": `Bearer ${kustomerAPIKey}`,
     "Content-Type": "application/json",
   });
 
@@ -25,10 +26,34 @@ export const fetchCustomers = async (name: string) => {
   };
 
   try {
-    const response = await fetch(`${proxyURL}${baseURL}`, initObject);
+    console.log("fetching customers")
+    const response = await fetch(`${proxyURL}${baseURL}${endpoint}`, initObject);
     const data = await response.json();
     return data;
   } catch (error) {
     console.log(error);
   }
 };
+
+export const fetchCustomerOrders = async (customerID: string) => {
+  const endpoint: string = `customers/${customerID}/klasses/orders`
+  let headers = new Headers({
+    "Authorization": `Bearer ${kustomerAPIKey}`,
+    "Content-Type": "application/json",
+  })
+
+  let initObject = {
+    method: "GET",
+    headers: headers
+  }
+
+  try {
+    console.log("getting customer orders")
+    const response = await fetch(`${proxyURL}${baseURL}${endpoint}`, initObject);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TopBar from './components/TopBar';
 import SideBar from './components/SideBar';
 import FormContainer from './components/FormContainer';
 import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
@@ -34,13 +34,15 @@ function App() {
     <Router>
       <div className="App" style={appStyle}>
         {/* <TopBar /> */}
-        <SideBar />
         <div className="App-container" style={appContainerStyle}>
           <Switch>
             <Route path='/' exact component={Dashboard}></Route>
+            {/* Create login page */}
+            <Route path='/login' component={Login}></Route>
             <Route path='/damage-defect-form' component={FormContainer}></Route>
           </Switch>
         </div>
+        <SideBar />
       </div>
     </Router>
   );

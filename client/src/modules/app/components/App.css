@@ -1,0 +1,11 @@
+.Side-bar{
+  position: fixed
+}
+
+.Top-bar {
+  position: fixed;
+}
+
+.App-container {
+  position: absolute;
+}

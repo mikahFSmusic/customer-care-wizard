@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const damaged_defect_1 = require("../controllers/damaged_defect");
+const image_upload_1 = require("../services/image_upload");
+const router = express_1.Router();
+router.post("/upload-damage-image", image_upload_1.upload.array("images", 3), damaged_defect_1.uploadDamageImage);
+router.post("/submit-damaged-defect", damaged_defect_1.addDamagedDefect);
+router.get("/damaged-defects", damaged_defect_1.getAllDamagedDefects);
+router.put("/update-damaged-defect/:id", damaged_defect_1.updateDamagedDefect);
+router.delete("/delete-damaged-defect/:id", damaged_defect_1.deleteDamagedDefect);
+router.get("/send-dd-emails", damaged_defect_1.sendEmail);
+exports.default = router;

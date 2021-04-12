@@ -60,3 +60,26 @@ export const fetchCustomerOrders = async (customerID: string) => {
     console.log(error);
   }
 };
+
+export const fetchOrdersById = async (orderId: string) => {
+  const endpoint: string = `klasses/orders/${orderId}`;
+  let headers = new Headers({
+    Authorization: `Bearer ${kustomerAPIKey}`,
+    "Content-Type": "application/json",
+  });
+  let initObject = {
+    method: "GET",
+    headers: headers,
+  };
+
+  try {
+    const response = await fetch(
+      `${proxyURL}${baseURL}${endpoint}`,
+      initObject
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,0 +1,10 @@
+node_modules
+client/node_modules
+client/build
+client/acceptance-tests
+client/webpack
+client/deployment
+server/node_modules
+tests/node_modules
+tests/cypress/screenshots
+globalSetup

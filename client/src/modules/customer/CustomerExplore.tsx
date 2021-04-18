@@ -1,4 +1,10 @@
-import React, { FormEvent, useEffect, useState, useRef, MutableRefObject } from "react";
+import React, {
+  FormEvent,
+  useEffect,
+  useState,
+  useRef,
+  MutableRefObject,
+} from "react";
 import { MDBBtn, MDBInput } from "mdbreact";
 import { CustomerInfo } from "./CustomerInfo";
 import { CustomerSearchResults } from "./CustomerSearchResults";
@@ -32,7 +38,10 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
     const prevSearchValue: string = prevSearchValueRef.current;
     prevSearchValueRef.current = searchValue;
     const doFetch = async (searchValue: string, prevSearchValue: string) => {
-      if (searchValue.length > prevSearchValue.length && searchValue !== prevSearchValue) {
+      if (
+        searchValue.length > prevSearchValue.length &&
+        searchValue !== prevSearchValue
+      ) {
         setLoading(true);
         const data = await fetchCustomers(searchValue);
         if (data) {
@@ -60,7 +69,7 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     customerData: any
   ) => {
-    console.log(customerData)
+    console.log(customerData);
     setCustomerData(customerData);
     props.onClick(event, customerData);
     setShowSearchBar(false);
@@ -87,7 +96,7 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
             onChange={handleSearchChange}
             icon="search"
             style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-          ></MDBInput>
+          />
         </div>
       );
     } else if (showBackIcon && !showSearchBar) {
@@ -136,10 +145,10 @@ export const CustomerExplore = (props: CustomerExploreProps) => {
 
   return (
     <div style={customerInfoStyle}>
-        {headerSwitch()}
-        <div>
-          <div style={resultsStyles}>{renderSwitch()}</div>
-        </div>
+      {headerSwitch()}
+      <div>
+        <div style={resultsStyles}>{renderSwitch()}</div>
+      </div>
     </div>
   );
 };

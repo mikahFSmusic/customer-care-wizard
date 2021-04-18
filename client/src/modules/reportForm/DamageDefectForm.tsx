@@ -16,6 +16,7 @@ import { CustomerExplore } from "../customer/CustomerExplore";
 import { MDBCol } from "mdbreact";
 import { fetchCustomerOrders } from "../../kustomer.api";
 import SideBar from "../app/components/SideBar";
+import { CustomerSearch } from "../customer/CustomerSearch";
 
 const DDForm = (props: any) => {
   // Damage Level
@@ -326,7 +327,9 @@ const DDForm = (props: any) => {
             <h5>Damaged/Defective Item Form</h5>
             {/* Customer search and base details */}
             <Form.Group>
-              <CustomerExplore onClick={handleCustomerClick} />
+              {/* <CustomerExplore onClick={handleCustomerClick} />
+               */}
+              <CustomerSearch />
             </Form.Group>
             <hr
               style={{

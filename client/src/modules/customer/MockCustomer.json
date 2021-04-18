@@ -1,0 +1,266 @@
+{
+  "data": {
+      "type": "customer",
+      "id": "5f05184f6cfd7700139a1040",
+      "attributes": {
+          "name": "Logan Grooms",
+          "displayName": "Logan Grooms",
+          "displayColor": "pink",
+          "displayIcon": "bike",
+          "externalIds": [],
+          "sharedExternalIds": [],
+          "signedUpAt": null,
+          "avatarUrl": null,
+          "username": null,
+          "emails": [
+              {
+                  "type": "home",
+                  "verified": false,
+                  "email": "logan.grooms@maisonette.com"
+              }
+          ],
+          "sharedEmails": [],
+          "phones": [
+              {
+                  "type": "home",
+                  "verified": false,
+                  "phone": "+18585251967"
+              },
+              {
+                  "type": "home",
+                  "verified": false,
+                  "phone": "+16514504724"
+              }
+          ],
+          "sharedPhones": [],
+          "whatsapps": [],
+          "facebookIds": [],
+          "instagramIds": [],
+          "socials": [],
+          "sharedSocials": [],
+          "urls": [],
+          "locations": [
+              {
+                  "type": "home",
+                  "address": "228 New York Ave",
+                  "cityName": "Brooklyn",
+                  "countryName": "United States",
+                  "regionName": "New York",
+                  "zipCode": "11216"
+              },
+              {
+                  "type": "work",
+                  "address": "228 New York Ave",
+                  "cityName": "Brooklyn",
+                  "countryName": "United States",
+                  "regionName": "New York",
+                  "zipCode": "11216"
+              }
+          ],
+          "activeUsers": [],
+          "watchers": [],
+          "recentLocation": {
+              "updatedAt": "2020-08-28T11:38:24.685Z"
+          },
+          "locale": "en-us",
+          "timeZone": null,
+          "birthdayAt": null,
+          "gender": null,
+          "createdAt": "2019-12-04T22:52:44.000Z",
+          "updatedAt": "2021-04-07T22:20:18.016Z",
+          "modifiedAt": "2021-04-07T22:20:17.963Z",
+          "lastSeenAt": null,
+          "lastActivityAt": "2021-04-07T22:20:18.016Z",
+          "lastCustomerActivityAt": "2021-04-07T22:20:17.845Z",
+          "deleted": false,
+          "lastMessageIn": {
+              "sentiment": null,
+              "channel": "voice",
+              "sentAt": "2020-12-18T22:21:03.342Z"
+          },
+          "lastMessageOut": {
+              "sentAt": "2021-03-13T19:10:52.341Z"
+          },
+          "lastMessageUnrespondedTo": {},
+          "lastMessageAt": "2021-03-13T19:10:52.341Z",
+          "lastConversation": {
+              "sentiment": {},
+              "channels": [
+                  "voice"
+              ],
+              "tags": [],
+              "id": "604d0e3ff8dd2a0c84aa2848"
+          },
+          "conversationCounts": {
+              "done": 148,
+              "open": 0,
+              "snoozed": 0,
+              "all": 148
+          },
+          "preview": {
+              "$init": true,
+              "channel": "voice",
+              "subject": "Outbound Call: +18585251967",
+              "text": "Voice Message",
+              "type": "message_out",
+              "previewAt": "2021-03-13T19:10:52.341Z"
+          },
+          "tags": [],
+          "sentiment": {
+              "polarity": 0,
+              "confidence": -0.0014762282371520996
+          },
+          "custom": {
+              "zendeskUserIdStr": "411984903853",
+              "lastOrderNumberStr": "M643973957",
+              "lifetimeValueNum": 852.49,
+              "storeCreditBalanceNum": 51.2
+          },
+          "progressiveStatus": "done",
+          "verified": true,
+          "rev": 581,
+          "recentItems": [
+              {
+                  "meta": {
+                      "klassName": "order"
+                  },
+                  "updatedAt": "2021-04-07T22:20:17.845Z",
+                  "type": "kobject",
+                  "id": "606e2d0258ace701cb8ddfeb"
+              },
+              {
+                  "meta": {
+                      "klassName": "order"
+                  },
+                  "updatedAt": "2021-03-18T10:53:59.552Z",
+                  "type": "kobject",
+                  "id": "5fc6422313b7822570ae8569"
+              },
+              {
+                  "meta": {
+                      "klassName": "order"
+                  },
+                  "updatedAt": "2021-03-18T10:33:49.471Z",
+                  "type": "kobject",
+                  "id": "5fc656917d34b15827b2017b"
+              },
+              {
+                  "meta": {
+                      "klassName": "order"
+                  },
+                  "updatedAt": "2021-03-18T10:28:26.341Z",
+                  "type": "kobject",
+                  "id": "5fc657e913b7822383b12335"
+              },
+              {
+                  "meta": {
+                      "klassName": "order"
+                  },
+                  "updatedAt": "2021-03-18T09:49:18.521Z",
+                  "type": "kobject",
+                  "id": "5fc762b0f42f7f4680705c9a"
+              }
+          ],
+          "satisfactionLevel": {
+              "firstSatisfaction": {
+                  "sentByTeams": [
+                      "5f0dc3cb8a595500191e803b",
+                      "5f21a717b83fe0001265a18b",
+                      "5f21a7188885b30013451742",
+                      "5f21a717cd14680012e918d0",
+                      "5f21a718abf0700012270ff9",
+                      "5f2c91ea18984b001a347ad7",
+                      "5f58e442b448a80019e3ddca",
+                      "5f60f37ef729ca0013eca687",
+                      "5fac50b702552d578df0cd91"
+                  ],
+                  "conversation": "5fcfcfb1d059977a14fa3237",
+                  "formResponse": "5fcfcfb16d4a9c0019814af6",
+                  "form": "5f04f03bf6a1cd0019452ecf",
+                  "channel": "voice",
+                  "status": "unresponded",
+                  "scheduledFor": "2020-12-09T19:10:41.934Z",
+                  "createdAt": "2020-12-08T19:10:41.940Z",
+                  "sentAt": "2020-12-09T19:11:42.020Z",
+                  "updatedAt": "2020-12-10T19:21:41.942Z",
+                  "sentBy": "5f04f0398ed1cb001361078e"
+              },
+              "lastSatisfaction": {
+                  "sentByTeams": [
+                      "5f0dc3cb8a595500191e803b",
+                      "5f21a717b83fe0001265a18b",
+                      "5f21a7188885b30013451742",
+                      "5f21a717cd14680012e918d0",
+                      "5f21a718abf0700012270ff9",
+                      "5f2c91ea18984b001a347ad7",
+                      "5f58e442b448a80019e3ddca",
+                      "5f60f37ef729ca0013eca687",
+                      "5fac50b702552d578df0cd91",
+                      "5fd7d25f4a9e7e110262b932",
+                      "5fdce2259fbdfd7154d5dd59"
+                  ],
+                  "conversation": "604d0e3ff8dd2a0c84aa2848",
+                  "formResponse": "604d0e3f74c2a60019d8e641",
+                  "form": "5f04f03bf6a1cd0019452ecf",
+                  "channel": "voice",
+                  "status": "unresponded",
+                  "scheduledFor": "2021-03-14T19:10:55.672Z",
+                  "createdAt": "2021-03-13T19:10:55.674Z",
+                  "sentAt": "2021-03-14T19:11:55.738Z",
+                  "updatedAt": "2021-03-15T19:21:55.463Z",
+                  "sentBy": "5f04f0398ed1cb001361078e"
+              },
+              "count": 4
+          },
+          "roleGroupVersions": [],
+          "accessOverride": [],
+          "firstName": "Logan",
+          "lastName": "Grooms"
+      },
+      "relationships": {
+          "messages": {
+              "links": {
+                  "self": "/v1/customers/5f05184f6cfd7700139a1040/messages"
+              }
+          },
+          "createdBy": {
+              "links": {
+                  "self": "/v1/users/5f21a6c22a97ab0013607720"
+              },
+              "data": {
+                  "type": "user",
+                  "id": "5f21a6c22a97ab0013607720"
+              }
+          },
+          "modifiedBy": {
+              "links": {
+                  "self": "/v1/users/5fbd36f9a3ceedef6eb967dd"
+              },
+              "data": {
+                  "type": "user",
+                  "id": "5fbd36f9a3ceedef6eb967dd"
+              }
+          },
+          "org": {
+              "data": {
+                  "type": "org",
+                  "id": "5f04f0386d21290012b80b76"
+              },
+              "links": {
+                  "self": "/v1/orgs/5f04f0386d21290012b80b76"
+              }
+          },
+          "orders": {
+              "links": {
+                  "self": "/v1/customers/5f05184f6cfd7700139a1040/klasses/orders"
+              },
+              "meta": {
+                  "kobject": true
+              }
+          }
+      },
+      "links": {
+          "self": "/v1/customers/5f05184f6cfd7700139a1040"
+      }
+  }
+}

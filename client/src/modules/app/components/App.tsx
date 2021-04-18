@@ -11,28 +11,6 @@ import { useAuth } from "../../auth/AuthContext";
 function App() {
   const { signedIn } = useAuth();
 
-  const appStyle = {
-    padding: 0,
-    top: "70px",
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-    backgroundColor: "#fdf8e8",
-  };
-
-  const appContainerStyle = {
-    left: "5rem",
-    top: "70px",
-    height: "100%",
-    bottom: 0,
-    right: 0,
-    padding: 5,
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-    backgroundColor: "white",
-  };
-
   return (
     <Router>
       <Switch>

@@ -1,0 +1,1188 @@
+{
+  "meta": {
+      "pageSize": 100,
+      "page": 1
+  },
+  "links": {
+      "self": "/v1/customers/5f05184f6cfd7700139a1040/klasses/orders?page=1&pageSize=100",
+      "first": "/v1/customers/5f05184f6cfd7700139a1040/klasses/orders?page=1&pageSize=100",
+      "prev": null,
+      "next": null
+  },
+  "data": [
+      {
+          "type": "kobject.order",
+          "id": "5fc61d5e485989b39379ced9",
+          "attributes": {
+              "externalId": "M826173643",
+              "title": "Order M826173643",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "M826173643",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H81120340507",
+                          "sku": "5851644759ae2557e012c783fe42ecc1",
+                          "maisonetteSku": "JANO00116172",
+                          "vendorSku": "J04654",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/216/457/product/m6vsskkklpu2adupqjag.jpg?1606169842,https://assets.maisonette.com/spree/images/attachments/000/216/470/product/g40uuuozgxdugamdkr3b.jpg?1606169854,https://assets.maisonette.com/spree/images/attachments/000/216/481/product/moc8yly3wzsapavhipi0.jpg?1606169870",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": "Happy Birthday!",
+                      "recipientEmail": "lgrooms@gmail.com",
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H81120340507",
+                          "tracking": "1Z4E31V10304324812",
+                          "shipmentState": "shipped",
+                          "eta": "Sep 23 - Sep 25",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Janod",
+                          "carrier_code": "UPS",
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/ups?tracking_numbers=1Z4E31V10304324812"
+                      }
+                  ],
+                  "paymentTotal": "17.95",
+                  "paymentDetails": [
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "completed",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "17.95"
+                      }
+                  ]
+              },
+              "custom": {
+                  "giftMessageTxt": "Happy Birthday!",
+                  "giftRecipientEmailStr": "lgrooms@gmail.com",
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 17.95
+              },
+              "tags": [],
+              "updatedAt": "2020-12-01T10:39:26.495Z",
+              "createdAt": "2020-12-01T10:39:26.495Z",
+              "rev": 1,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc61d5e485989b39379ced9"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fc6422313b7822570ae8569",
+          "attributes": {
+              "externalId": "R050594233",
+              "title": "Order R050594233",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "R050594233",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H35550335105",
+                          "sku": "2da103ddaa404131abb21d2c1a3f12f0",
+                          "maisonetteSku": "PAIG00144424",
+                          "vendorSku": "SS20-Masks-12-AD/CH-CLBLK",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/163/822/product/pgvov8pxyxjm6cqmb74n.jpg?1605113280",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H35550335105",
+                          "tracking": "1Z4E31V10311823564",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "PAIGELAUREN",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1Z4E31V10311823564"
+                      }
+                  ],
+                  "paymentTotal": "0.0",
+                  "paymentDetails": [
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "checkout",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "54.44"
+                      }
+                  ],
+                  "credits": [],
+                  "refunds": [],
+                  "reimbursements": [],
+                  "returnAuthorizations": [],
+                  "returnItems": []
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 0
+              },
+              "tags": [],
+              "updatedAt": "2021-03-18T10:53:59.554Z",
+              "createdAt": "2020-12-01T13:16:19.567Z",
+              "rev": 2,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc6422313b7822570ae8569"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fc656917d34b15827b2017b",
+          "attributes": {
+              "externalId": "R199107208",
+              "title": "Order R199107208",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "R199107208",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "588 De Haro Street",
+                      "city": "San Francisco",
+                      "zipcode": "94107",
+                      "state": "California",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "630 West Water Street",
+                      "city": "Elmira",
+                      "zipcode": "14905",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H37024868867",
+                          "sku": "4ab12e0caac991c4319283cbeb5261af",
+                          "maisonetteSku": "RUGG00137779",
+                          "vendorSku": "RUGG-DB-1217",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/180/173/product/lznlk02h4ckh39ykjo6i.jpg?1605113125,https://assets.maisonette.com/spree/images/attachments/000/180/183/product/smviu1rjynjrosgteyg4.jpg?1605113130,https://assets.maisonette.com/spree/images/attachments/000/180/191/product/mzkq9j6agoiq3pvcxvfe.jpg?1605113135,https://assets.maisonette.com/spree/images/attachments/000/180/193/product/dy8t3sfis4m6mtxquejm.jpg?1605113140",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H02802054760",
+                          "sku": "9b82ab7229c4c74d828acb14108ecb83",
+                          "maisonetteSku": "KID 00114435",
+                          "vendorSku": "851224006572",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/239/953/product/ogas0jxr2o3facnhejkw.jpg?1607639497,https://assets.maisonette.com/spree/images/attachments/000/239/960/product/m2mnrw9481cnikcmkawd.jpg?1607639512",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H76849771337",
+                          "sku": "f5b964789620252785e70ed19019a285",
+                          "maisonetteSku": "PETI00077368",
+                          "vendorSku": "WPJHBM103",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/232/569/product/ko2yf8onelbwulmmqpzq.jpg?1607379377,https://assets.maisonette.com/spree/images/attachments/000/232/575/product/bkcd678nqholofgz55b2.jpg?1607379386,https://assets.maisonette.com/spree/images/attachments/000/232/578/product/sigtmdzbwiodxxz5ktqv.jpg?1607379396,https://assets.maisonette.com/spree/images/attachments/000/232/581/product/ihx0vu53erui4cbp9u2k.jpg?1607379405",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H76849771337",
+                          "tracking": "1ZW0038F0398509530",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Petite Plume",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1ZW0038F0398509530"
+                      },
+                      {
+                          "shipmentNumber": "H37024868867",
+                          "tracking": "1Z4E31V10313127563",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Ruggish",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1Z4E31V10313127563"
+                      },
+                      {
+                          "shipmentNumber": "H02802054760",
+                          "tracking": "1Z1E0F560344739211",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Kid Made Modern",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1Z1E0F560344739211"
+                      }
+                  ],
+                  "paymentTotal": "191.61",
+                  "paymentDetails": [
+                      {
+                          "name": "Store Credit",
+                          "state": "completed",
+                          "source_type": "Spree::StoreCredit",
+                          "amount": "30.0"
+                      },
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "completed",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "161.61"
+                      }
+                  ],
+                  "credits": [],
+                  "refunds": [],
+                  "reimbursements": [],
+                  "returnAuthorizations": [],
+                  "returnItems": []
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 191.61
+              },
+              "tags": [],
+              "updatedAt": "2021-03-18T10:33:49.494Z",
+              "createdAt": "2020-12-01T14:43:29.392Z",
+              "rev": 2,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc656917d34b15827b2017b"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fc657e913b7822383b12335",
+          "attributes": {
+              "externalId": "R821514998",
+              "title": "Order R821514998",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "R821514998",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "55 Washington Street",
+                      "city": "Brooklyn",
+                      "zipcode": "11201",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "630 West Water Street",
+                      "city": "Elmira",
+                      "zipcode": "14905",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H66636479965",
+                          "sku": "9849d10977b6197ae03ef111bda1a682",
+                          "maisonetteSku": "EEBO00133323",
+                          "vendorSku": "PZTCPT",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 0,
+                          "quantityCanceled": 1,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/068/174/product/cs86b3wvnthzfftogehj.jpg?1605112976,https://assets.maisonette.com/spree/images/attachments/000/068/186/product/x5agahyh9bkekhb3yvu5.jpg?1605112981",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H66636479965",
+                          "tracking": null,
+                          "shipmentState": "ready",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "eeBoo",
+                          "carrier_code": null,
+                          "trackingUrl": null
+                      }
+                  ],
+                  "paymentTotal": "0.0",
+                  "paymentDetails": [
+                      {
+                          "name": "Store Credit",
+                          "state": "completed",
+                          "source_type": "Spree::StoreCredit",
+                          "amount": "24.94"
+                      }
+                  ],
+                  "credits": [],
+                  "refunds": [],
+                  "reimbursements": [
+                      {
+                          "number": "RI056782102",
+                          "total": "14.99",
+                          "reimbursementStatus": "reimbursed",
+                          "customerReturnNumber": null
+                      }
+                  ],
+                  "returnAuthorizations": [],
+                  "returnItems": []
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 0
+              },
+              "tags": [],
+              "updatedAt": "2021-03-18T10:28:26.342Z",
+              "createdAt": "2020-12-01T14:49:13.458Z",
+              "rev": 2,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc657e913b7822383b12335"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fc762b0f42f7f4680705c9a",
+          "attributes": {
+              "externalId": "R074249334",
+              "title": "Order R074249334",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "R074249334",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "77 Geary Street",
+                      "city": "San Francisco",
+                      "zipcode": "94108",
+                      "state": "California",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "630 West Water Street",
+                      "city": "Elmira",
+                      "zipcode": "14905",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H54384703156",
+                          "sku": "01d1904e649b3f45082daa1cb278d150",
+                          "maisonetteSku": "STOK00095485",
+                          "vendorSku": "520200",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/140/112/product/drly3d4hgdeqbvyqik7u.jpg?1605111678",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H54384703156",
+                          "tracking": "1Z24284F0300285836",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Stokke",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1Z24284F0300285836"
+                      }
+                  ],
+                  "paymentTotal": "209.25",
+                  "paymentDetails": [
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "completed",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "209.25"
+                      }
+                  ],
+                  "credits": [],
+                  "refunds": [],
+                  "reimbursements": [],
+                  "returnAuthorizations": [],
+                  "returnItems": []
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 209.25
+              },
+              "tags": [],
+              "updatedAt": "2021-03-18T09:49:18.528Z",
+              "createdAt": "2020-12-02T09:47:28.845Z",
+              "rev": 2,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc762b0f42f7f4680705c9a"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fc76aa19b17d01adbb09629",
+          "attributes": {
+              "externalId": "R089575641",
+              "title": "Order R089575641",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "R089575641",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "1604 Mallard Drive",
+                      "city": "Eagan",
+                      "zipcode": "55122",
+                      "state": "Minnesota",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "1604 Mallard Drive",
+                      "city": "Eagan",
+                      "zipcode": "55122",
+                      "state": "Minnesota",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H74605407019",
+                          "sku": "44eb7a219c9f9fcafa82beab05eefc36",
+                          "maisonetteSku": "BABY00125338",
+                          "vendorSku": "CR-KIT",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 0,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 1,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/077/175/product/dobkvzjkulu2bun10rqd.jpg?1605112714,https://assets.maisonette.com/spree/images/attachments/000/077/195/product/nusfp0awzbkpepahjgge.jpg?1605112719",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H74605407019",
+                          "tracking": "1Z4E31V10210947274",
+                          "shipmentState": "shipped",
+                          "eta": "",
+                          "shippingMethod": "Two Day (Domestic)",
+                          "stockLocationName": "Baby Shusher",
+                          "carrier_code": null,
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/USPS?tracking_numbers=1Z4E31V10210947274"
+                      }
+                  ],
+                  "paymentTotal": "64.94",
+                  "paymentDetails": [
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "completed",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "64.94"
+                      }
+                  ]
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 64.94
+              },
+              "tags": [],
+              "updatedAt": "2020-12-02T10:21:21.045Z",
+              "createdAt": "2020-12-02T10:21:21.045Z",
+              "rev": 1,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fc76aa19b17d01adbb09629"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "5fd241e5cbc722a5dc2682d0",
+          "attributes": {
+              "externalId": "M728165490",
+              "title": "Order M728165490",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "M728165490",
+                  "email": "logan@uptrip.com",
+                  "shippingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H87166318478",
+                          "sku": "2ba3984df515d18cbe169a94b0ee846e",
+                          "maisonetteSku": "MAIS02284712",
+                          "vendorSku": "MK-C105-Rose-12y",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/213/260/product/yrrcz1gf8gtdqjd7lfdl.jpg?1605927993,https://assets.maisonette.com/spree/images/attachments/000/213/271/product/s75adrdmfzzrrqnigemo.jpg?1605928008,https://assets.maisonette.com/spree/images/attachments/000/213/288/product/w2qwz7zfwu41wcshkunp.jpg?1605928026,https://assets.maisonette.com/spree/images/attachments/000/213/295/product/lsy1zo27ub6mvpqpgukt.jpg?1605928043,https://assets.maisonette.com/spree/images/attachments/000/213/305/product/csjsjqqaq0l5utsefis4.jpg?1605928058,https://assets.maisonette.com/spree/images/attachments/000/213/311/product/ts4iuxkugjnnljcx8eo9.jpg?1605928073,https://assets.maisonette.com/spree/images/attachments/000/213/317/product/uttyg9z0syu2j5qtb0vx.jpg?1605928087,https://assets.maisonette.com/spree/images/attachments/000/213/329/product/pqamxnom3g6akp6ocpj9.jpg?1605928100,https://assets.maisonette.com/spree/images/attachments/000/213/333/product/qjdywl0asowqx6tb48ps.jpg?1605928113",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": null,
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H87166318478",
+                          "tracking": "781300345726",
+                          "shipmentState": "shipped",
+                          "eta": "Dec 17 - Dec 21",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Maisonette Fulfillment",
+                          "carrier_code": "FedEx",
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/fedex?tracking_numbers=781300345726"
+                      }
+                  ],
+                  "paymentTotal": "0.0",
+                  "paymentDetails": []
+              },
+              "custom": {
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 0
+              },
+              "tags": [],
+              "updatedAt": "2020-12-13T15:13:03.703Z",
+              "createdAt": "2020-12-10T15:42:29.068Z",
+              "rev": 2,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/5fd241e5cbc722a5dc2682d0"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "603da6b3bcd229ae02ce0895",
+          "attributes": {
+              "externalId": "M307751358",
+              "title": "Order M307751358",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "M307751358",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "780 4th Ave",
+                      "city": "San Francisco",
+                      "zipcode": "94118",
+                      "state": "California",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H88688708424",
+                          "sku": "dcf750814d7fa4b03e8d295f4015a6ae",
+                          "maisonetteSku": "ORAN00060562",
+                          "vendorSku": "TracB2",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/087/731/product/cq9exlzogh2fiwxi7ia2.jpg?1605112329",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H88688708424",
+                          "sku": "b425af5ab48d9c8b27a4890d65ccbe0b",
+                          "maisonetteSku": "ORAN00060563",
+                          "vendorSku": "TracB4",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/087/731/product/cq9exlzogh2fiwxi7ia2.jpg?1605112329",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H22306622061",
+                          "sku": "75305ebc55c9f265bc62833faf38a71b",
+                          "maisonetteSku": "BUTL00130501",
+                          "vendorSku": "3689140",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/078/063/product/drdnkeaqr0fz4a0nrifx.jpg?1605112743,https://assets.maisonette.com/spree/images/attachments/000/078/106/product/ow0g3felfvnn1bifdd2v.jpg?1605112748,https://assets.maisonette.com/spree/images/attachments/000/078/148/product/ru7oe8rf9uteujnyy1k5.jpg?1605112753,https://assets.maisonette.com/spree/images/attachments/000/078/184/product/zrtmotwfzlf4xs3tpk0u.jpg?1605112758",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H70502386306",
+                          "sku": "7b927b6fd05b1464c4ba54636dc95f14",
+                          "maisonetteSku": "BLUE06513222",
+                          "vendorSku": "BHBBAGW-S",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/242/202/product/d596oqye9e5bhvfeptuv.jpg?1608138012,https://assets.maisonette.com/spree/images/attachments/000/242/157/product/u0vcm3yoigybit0dcwvt.jpg?1608078626",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H70502386306",
+                          "sku": "0fc5ca633fcfcc97bb59916393795b7c",
+                          "maisonetteSku": "BLUE06513220",
+                          "vendorSku": "BHBBAGW-M",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 1,
+                          "quantityCanceled": 0,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/242/202/product/d596oqye9e5bhvfeptuv.jpg?1608138012,https://assets.maisonette.com/spree/images/attachments/000/242/157/product/u0vcm3yoigybit0dcwvt.jpg?1608078626",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": "",
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H70502386306",
+                          "tracking": "1Z4E31V1YW25023163",
+                          "shipmentState": "shipped",
+                          "eta": "Mar 09 - Mar 11",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "The Blueberry Hill",
+                          "carrier_code": "UPSSurePost",
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/ups?tracking_numbers=1Z4E31V1YW25023163"
+                      },
+                      {
+                          "shipmentNumber": "H22306622061",
+                          "tracking": "1Z6137040376310221",
+                          "shipmentState": "shipped",
+                          "eta": "Mar 10 - Mar 12",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Butler",
+                          "carrier_code": "UPS",
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/ups?tracking_numbers=1Z6137040376310221"
+                      },
+                      {
+                          "shipmentNumber": "H88688708424",
+                          "tracking": "1Z4E31V1YW32888001",
+                          "shipmentState": "shipped",
+                          "eta": "Mar 09 - Mar 11",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "orangeheat",
+                          "carrier_code": "UPSSurePost",
+                          "trackingUrl": "https://maisonette.narvar.com/maisonette/tracking/ups?tracking_numbers=1Z4E31V1YW32888001"
+                      }
+                  ],
+                  "paymentTotal": "213.97",
+                  "paymentDetails": [
+                      {
+                          "name": "Braintree::CreditCard",
+                          "state": "completed",
+                          "source_type": "SolidusPaypalBraintree::Source",
+                          "amount": "213.97"
+                      }
+                  ],
+                  "returnAuthorizations": [],
+                  "returnItems": [],
+                  "reimbursements": [],
+                  "refunds": [],
+                  "credits": []
+              },
+              "custom": {
+                  "giftMessageTxt": "",
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 213.97
+              },
+              "tags": [],
+              "updatedAt": "2021-03-04T06:02:31.755Z",
+              "createdAt": "2021-03-02T02:45:07.977Z",
+              "rev": 7,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/603da6b3bcd229ae02ce0895"
+          }
+      },
+      {
+          "type": "kobject.order",
+          "id": "606e2d0258ace701cb8ddfeb",
+          "attributes": {
+              "externalId": "M643973957",
+              "title": "Order M643973957",
+              "icon": "package-variant-closed",
+              "images": [],
+              "data": {
+                  "orderNumber": "M643973957",
+                  "email": "logan.grooms@maisonette.com",
+                  "shippingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "billingAddress": {
+                      "address": "228 New York Ave",
+                      "city": "Brooklyn",
+                      "zipcode": "11216",
+                      "state": "New York",
+                      "country": "United States"
+                  },
+                  "lineItemDetails": [
+                      {
+                          "shipmentNumber": "H28788326532",
+                          "sku": "4ff07a19fefe619a7cbd6cbdd51bf18e",
+                          "maisonetteSku": "MANH00129894",
+                          "vendorSku": "217120",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 0,
+                          "quantityCanceled": 1,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/213/791/product/fj4sgggwb3ff4wxewm19.jpg?1606145474,https://assets.maisonette.com/spree/images/attachments/000/213/797/product/my0vr4kaa9cw03cqovjm.jpg?1606145479,https://assets.maisonette.com/spree/images/attachments/000/213/801/product/upeitfzcwcjutgr0mepu.jpg?1606145483,https://assets.maisonette.com/spree/images/attachments/000/213/806/product/vede3rbclttz3zhxmylm.jpg?1606145490",
+                          "monogram": null
+                      },
+                      {
+                          "shipmentNumber": "H46541373135",
+                          "sku": "6b3e70839fc2f240ba25ba84beb9945a",
+                          "maisonetteSku": "PLA10116",
+                          "vendorSku": "8613",
+                          "quantityOrdered": 1,
+                          "quantityShipped": 0,
+                          "quantityCanceled": 1,
+                          "quantityReturned": 0,
+                          "images": "https://assets.maisonette.com/spree/images/attachments/000/034/059/product/kjqfqqwuoxnqvwclchkq.jpg?1605113917",
+                          "monogram": null
+                      }
+                  ],
+                  "giftDetails": {
+                      "giftMessage": "Happy birthday! ",
+                      "recipientEmail": null,
+                      "wrapped": false
+                  },
+                  "shipments": [
+                      {
+                          "shipmentNumber": "H28788326532",
+                          "tracking": null,
+                          "shipmentState": "canceled",
+                          "eta": "Apr 15 - Apr 19",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "Manhattan Toy",
+                          "carrier_code": null,
+                          "trackingUrl": null
+                      },
+                      {
+                          "shipmentNumber": "H46541373135",
+                          "tracking": null,
+                          "shipmentState": "canceled",
+                          "eta": "Apr 15 - Apr 19",
+                          "shippingMethod": "Ground (Domestic)",
+                          "stockLocationName": "PlanToys",
+                          "carrier_code": null,
+                          "trackingUrl": null
+                      }
+                  ],
+                  "paymentTotal": "0.0",
+                  "paymentDetails": [],
+                  "returnAuthorizations": [],
+                  "returnItems": [],
+                  "reimbursements": [
+                      {
+                          "number": "RI806877326",
+                          "total": "0.0",
+                          "reimbursementStatus": "reimbursed",
+                          "customerReturnNumber": null
+                      },
+                      {
+                          "number": "RI118751443",
+                          "total": "2.62",
+                          "reimbursementStatus": "reimbursed",
+                          "customerReturnNumber": null
+                      }
+                  ],
+                  "refunds": [],
+                  "credits": [
+                      {
+                          "amount": "23.0",
+                          "type": "Spree::StoreCredit",
+                          "memo": "Credit for Order #M643973957",
+                          "reimbursementNumber": "RI806877326"
+                      },
+                      {
+                          "amount": "28.2",
+                          "type": "Spree::StoreCredit",
+                          "memo": "Credit for Order #M643973957",
+                          "reimbursementNumber": "RI118751443"
+                      }
+                  ]
+              },
+              "custom": {
+                  "giftMessageTxt": "Happy birthday! ",
+                  "giftWrappedBool": false,
+                  "totalPaymentNum": 0
+              },
+              "tags": [],
+              "updatedAt": "2021-04-07T22:20:17.847Z",
+              "createdAt": "2021-04-07T22:06:58.538Z",
+              "rev": 3,
+              "roleGroupVersions": []
+          },
+          "relationships": {
+              "org": {
+                  "links": {
+                      "self": "/v1/orgs/5f04f0386d21290012b80b76"
+                  },
+                  "data": {
+                      "type": "org",
+                      "id": "5f04f0386d21290012b80b76"
+                  }
+              },
+              "klass": {
+                  "link": {
+                      "self": "/v1/klasses/order"
+                  },
+                  "data": {
+                      "type": "klass",
+                      "id": "order"
+                  }
+              },
+              "customer": {
+                  "links": {
+                      "self": "/v1/customers/5f05184f6cfd7700139a1040"
+                  },
+                  "data": {
+                      "type": "customer",
+                      "id": "5f05184f6cfd7700139a1040"
+                  }
+              }
+          },
+          "links": {
+              "self": "/v1/klasses/orders/606e2d0258ace701cb8ddfeb"
+          }
+      }
+  ]
+}

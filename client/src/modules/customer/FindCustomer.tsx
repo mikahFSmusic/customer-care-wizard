@@ -1,16 +1,15 @@
 import { MDBBtn } from "mdbreact";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { Container } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { Customer } from "./Customer";
 import { useCustomer } from "./CustomerContext";
 import { CustomerSearch } from "./CustomerSearch";
 
 export interface IFindCustomerProps {
-  onClick?: (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    customerData: ICustomerData
+  onCustomerClick?: (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => void;
+  onContinueClick?: (event: SyntheticEvent<HTMLButtonElement, Event>) => void;
 }
 
 export const FindCustomer = (props: IFindCustomerProps) => {
@@ -18,15 +17,17 @@ export const FindCustomer = (props: IFindCustomerProps) => {
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
       <CustomerSearch />
-      <Customer onClick={props.onClick} />
+      <Customer onClick={props.onCustomerClick} />
       {customer && (
         <MDBBtn
+          name="customer-continue"
           style={{
             marginTop: 20,
             marginLeft: 0,
             marginRight: 0,
             marginBottom: 10,
           }}
+          onClick={props.onContinueClick}
         >
           Continue
         </MDBBtn>

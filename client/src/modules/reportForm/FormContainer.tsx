@@ -3,15 +3,18 @@ import DamageDefectFormV2 from "./DamageDefectForm";
 import Col from "react-bootstrap/Col";
 import "./FormContainer.scss";
 import { ReportForm } from "./ReportForm";
+import { CustomerProvider } from "../customer/CustomerContext";
 
 const FormContainer = () => {
   return (
-    <div className="Form-container">
-      <div className="Form-wrapper">
-        {/* <DamageDefectFormV2 /> */}
-        <ReportForm />
+    <CustomerProvider>
+      <div className="Form-container">
+        <div className="Form-wrapper">
+          {/* <DamageDefectFormV2 /> */}
+          <ReportForm />
+        </div>
       </div>
-    </div>
+    </CustomerProvider>
   );
 };
 

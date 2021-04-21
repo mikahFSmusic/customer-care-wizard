@@ -1,7 +1,7 @@
-interface IOrder {
+interface IOrderList {
   meta: Meta;
   links: Links;
-  data?: DataEntity[] | null;
+  data?: IOrder[] | null;
 }
 interface Meta {
   pageSize: number;
@@ -13,7 +13,8 @@ interface Links {
   prev?: null;
   next?: null;
 }
-interface DataEntity {
+
+interface IOrder {
   type: string;
   id: string;
   attributes: Attributes;
@@ -42,12 +43,7 @@ interface Data {
   giftDetails: GiftDetails;
   shipments?: ShipmentsEntity[] | null;
   paymentTotal: string;
-  paymentDetails?: (PaymentDetailsEntity | null)[] | null;
-  credits?: (CreditsEntity | null)[] | null;
-  refunds?: null[] | null;
-  reimbursements?: (ReimbursementsEntity | null)[] | null;
-  returnAuthorizations?: null[] | null;
-  returnItems?: null[] | null;
+  paymentDetails?: PaymentDetailsEntity[] | null;
 }
 interface ShippingAddressOrBillingAddress {
   address: string;
@@ -69,19 +65,19 @@ interface LineItemDetailsEntity {
   monogram?: null;
 }
 interface GiftDetails {
-  giftMessage?: string | null;
-  recipientEmail?: string | null;
+  giftMessage: string;
+  recipientEmail: string;
   wrapped: boolean;
 }
 interface ShipmentsEntity {
   shipmentNumber: string;
-  tracking?: string | null;
+  tracking: string;
   shipmentState: string;
   eta: string;
   shippingMethod: string;
   stockLocationName: string;
-  carrier_code?: string | null;
-  trackingUrl?: string | null;
+  carrier_code: string;
+  trackingUrl: string;
 }
 interface PaymentDetailsEntity {
   name: string;
@@ -89,21 +85,9 @@ interface PaymentDetailsEntity {
   source_type: string;
   amount: string;
 }
-interface CreditsEntity {
-  amount: string;
-  type: string;
-  memo: string;
-  reimbursementNumber: string;
-}
-interface ReimbursementsEntity {
-  number: string;
-  total: string;
-  reimbursementStatus: string;
-  customerReturnNumber?: null;
-}
 interface Custom {
-  giftMessageTxt?: string | null;
-  giftRecipientEmailStr?: string | null;
+  giftMessageTxt: string;
+  giftRecipientEmailStr: string;
   giftWrappedBool: boolean;
   totalPaymentNum: number;
 }

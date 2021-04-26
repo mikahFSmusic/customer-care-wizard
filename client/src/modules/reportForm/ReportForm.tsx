@@ -2,14 +2,16 @@ import React, { SyntheticEvent, useState } from "react";
 import { Container } from "react-bootstrap";
 import { getCustomerOrders } from "../../kustomer.api";
 import SideBar from "../app/components/SideBar";
-import { CustomerProvider, useCustomer } from "../customer/CustomerContext";
+import { useCustomer } from "../customer/CustomerContext";
 import { FindCustomer } from "../customer/FindCustomer";
 import Order from "../order/Order";
 import { OrdersContainer } from "../order/OrdersContainer";
+import { useForm } from "./ReportFormContext";
 
 export const ReportForm = () => {
   const { customer } = useCustomer();
-  const [orders, setOrders] = useState<IOrderList | null>(null);
+  const { addOrder, removeOrder, orders } = useForm();
+  const [customerOrders, setOrders] = useState<IOrderList | null>(null);
   const [showFindCustomer, setShowFindCustomer] = useState<boolean>(true);
   const [showOrders, setShowOrders] = useState<boolean>(false);
 
@@ -25,18 +27,28 @@ export const ReportForm = () => {
     const el = event.target;
     console.log(el);
     if (customer) {
-      console.log("customer found");
-      const orders = await getCustomerOrders(
+      const customerOrders = await getCustomerOrders(
         customer.data.relationships.orders.links.self
       );
-      console.log(orders);
-      if (orders) {
-        setOrders(orders);
-        console.log(orders);
+      console.log(customerOrders);
+      if (customerOrders) {
+        setOrders(customerOrders);
+        console.log(customerOrders);
         setShowFindCustomer(false);
         setShowOrders(true);
       }
     }
+  };
+
+  const handleOrderSelect = (
+    e: SyntheticEvent<HTMLInputElement, Event>,
+    order: IOrder
+  ) => {
+    const el = e.target as HTMLInputElement;
+    if (el.checked) {
+      addOrder(order);
+    }
+    removeOrder(order);
   };
 
   return (
@@ -50,11 +62,11 @@ export const ReportForm = () => {
               onContinueClick={handleContinueClick}
             />
           )}
-          {showOrders && orders && (
+          {showOrders && customerOrders && (
             <OrdersContainer
               onContinueClick={handleContinueClick}
-              children={orders?.data?.map((order) => (
-                <Order order={order} />
+              children={customerOrders?.data?.map((order) => (
+                <Order order={order} onSelect={handleOrderSelect} />
               ))}
             />
           )}

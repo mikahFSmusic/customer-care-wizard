@@ -1,0 +1,8 @@
+.order-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 2px;
+  &:hover {
+    border: 1px solid blue;
+  }
+}

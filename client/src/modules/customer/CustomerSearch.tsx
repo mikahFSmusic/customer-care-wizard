@@ -1,7 +1,6 @@
-import { MDBBtn, MDBContainer, MDBIcon, MDBInputGroup } from "mdbreact";
+import { MDBBtn, MDBIcon, MDBInputGroup } from "mdbreact";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { convertTypeAcquisitionFromJson } from "typescript";
 import { getCustomerByEmail } from "../../kustomer.api";
 import { useCustomer } from "./CustomerContext";
 
@@ -12,7 +11,7 @@ interface ICustomerSearchProps {
 export const CustomerSearch = ({ customerData }: ICustomerSearchProps) => {
   const [email, setEmail] = useState<string | undefined>();
   const [disabled, setDisabled] = useState<boolean>();
-  const { customer, addCustomer } = useCustomer();
+  const { addCustomer } = useCustomer();
 
   const isValidEmail = (value: string) => {
     if (

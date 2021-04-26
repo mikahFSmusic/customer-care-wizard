@@ -1,5 +1,7 @@
 import { MDBBtn } from "mdbreact";
 import React, { SyntheticEvent } from "react";
+import { Container } from "react-bootstrap";
+import "./OrdersContainer.scss";
 
 interface IOrdersContainerProps {
   children?: React.ReactNode;
@@ -11,20 +13,20 @@ export const OrdersContainer = ({
   onContinueClick,
 }: IOrdersContainerProps) => {
   return (
-    <>
+    <Container className="orders-container">
       {children}
       <MDBBtn
         name="orders-continue"
         style={{
-          marginTop: 20,
           marginLeft: 0,
           marginRight: 0,
           marginBottom: 10,
+          width: "100%",
         }}
         onClick={onContinueClick}
       >
         Continue
       </MDBBtn>
-    </>
+    </Container>
   );
 };

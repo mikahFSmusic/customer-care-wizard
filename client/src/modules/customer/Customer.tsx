@@ -11,14 +11,12 @@ interface ICustomerProps {
 export const Customer = (props: ICustomerProps) => {
   const { customer } = useCustomer();
   const [customerId, setCustomerId] = useState<string>("");
-  const [ordersLink, setOrdersLink] = useState<string>("");
   const [phones, setPhones] = useState<PhonesEntity[] | null | undefined>();
   const [email, setEmail] = useState<string>();
 
   useEffect(() => {
     if (customer) {
       setCustomerId(customer.data.id);
-      setOrdersLink(customer.data.relationships.orders.links.self);
       setPhones(customer.data.attributes.phones);
       if (customer.data.attributes.emails) {
         setEmail(customer.data.attributes.emails[0].email);

@@ -9,8 +9,13 @@
   align-content: center;
   vertical-align: middle;
   .Form-wrapper {
+    top: 5vh;
+    height: 100%;
     width: 60%;
+    max-height: 600px;
     display: flex;
     align-content: center;
+    align-self: center;
+    overflow: scroll;
   }
 }

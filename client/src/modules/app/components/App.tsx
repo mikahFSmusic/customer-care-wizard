@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import SideBar from "./SideBar";
 import FormContainer from "../../reportForm/FormContainer";
 import Dashboard from "../../dashboard/Dashboard";
 import Login from "../../auth/Login";
